@@ -8,22 +8,241 @@
     <author>
       <name>山姆大叔</name>
     </author>
-    <updated>2023-05-25T09:35:26.956Z</updated>
+    <updated>2023-07-15T09:14:29.000Z</updated>
     <entry>
-        <id>https://samlin-msft.github.io/2023/05/25/hello-world/</id>
-        <title>Hello World</title>
-        <link rel="alternate" href="https://samlin-msft.github.io/2023/05/25/hello-world/"/>
-        <content type="html">&lt;p&gt;Welcome to &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvLw==&#34;&gt;Hexo&lt;/span&gt;! This is your very first post. Check &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv&#34;&gt;documentation&lt;/span&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=&#34;&gt;troubleshooting&lt;/span&gt; or you can ask me on &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==&#34;&gt;GitHub&lt;/span&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;quick-start&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#quick-start&#34;&gt;#&lt;/a&gt; Quick Start&lt;/h2&gt;
-&lt;h3 id=&#34;create-a-new-post&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#create-a-new-post&#34;&gt;#&lt;/a&gt; Create a new post&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo new &lt;span class=&#34;token string&#34;&gt;&#34;My New Post&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvd3JpdGluZy5odG1s&#34;&gt;Writing&lt;/span&gt;&lt;/p&gt;
-&lt;h3 id=&#34;run-server&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#run-server&#34;&gt;#&lt;/a&gt; Run server&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo server&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvc2VydmVyLmh0bWw=&#34;&gt;Server&lt;/span&gt;&lt;/p&gt;
-&lt;h3 id=&#34;generate-static-files&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#generate-static-files&#34;&gt;#&lt;/a&gt; Generate static files&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo generate&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZ2VuZXJhdGluZy5odG1s&#34;&gt;Generating&lt;/span&gt;&lt;/p&gt;
-&lt;h3 id=&#34;deploy-to-remote-sites&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#deploy-to-remote-sites&#34;&gt;#&lt;/a&gt; Deploy to remote sites&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo deploy&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvb25lLWNvbW1hbmQtZGVwbG95bWVudC5odG1s&#34;&gt;Deployment&lt;/span&gt;&lt;/p&gt;
+        <id>https://samlin-msft.github.io/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/</id>
+        <title>Build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environments</title>
+        <link rel="alternate" href="https://samlin-msft.github.io/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/"/>
+        <content type="html">&lt;h1 id=&#34;build-a-cyclecloud-with-slurm-cluster-integrated-mysql-and-scheduler-ha-environments&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#build-a-cyclecloud-with-slurm-cluster-integrated-mysql-and-scheduler-ha-environments&#34;&gt;#&lt;/a&gt; Build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environments&lt;/h1&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#introduction&#34;&gt;#&lt;/a&gt; Introduction&lt;/h2&gt;
+&lt;p&gt;In this guide, you can walk through the process of setting up a CycleCloud environment that seamlessly integrates with a Slurm Cluster. Additionally, by exploring the integration of MySQL with external NFS Server that allowing for high availability of the cluster schedulers.&lt;/p&gt;
+&lt;h2 id=&#34;architecture&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#architecture&#34;&gt;#&lt;/a&gt; Architecture&lt;/h2&gt;
+&lt;p&gt;With the following architecture, you can build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environments.&lt;br /&gt;
+All the resources are deployed in the same resource group, virtual network. The CycleCloud Cluster is deployed in the subnet  &lt;code&gt;snet-cc&lt;/code&gt; , the Slurm Cluster is deployed in the subnet  &lt;code&gt;snet-slurm&lt;/code&gt; , the MySQL Server is deployed in the subnet  &lt;code&gt;snet-mysql&lt;/code&gt; , the NFS Server is deployed in the subnet  &lt;code&gt;snet-anf&lt;/code&gt; .&lt;/p&gt;
+&lt;p&gt;The Slurm Cluster source for CycleCloud will be downloaded from the &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL0F6dXJlL2N5Y2xlY2xvdWQtc2x1cm0=&#34;&gt;Azure-CycleCloud-Slurm&lt;/span&gt; GitHub repository.&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image.png&#34; alt=&#34;CC with Slurm Architecture&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#prerequisites&#34;&gt;#&lt;/a&gt; Prerequisites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Virtual network:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#&lt;/th&gt;
+&lt;th&gt;Virtual Network Name&lt;/th&gt;
+&lt;th&gt;Address Space&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;vnet-cc-slurm&lt;/td&gt;
+&lt;td&gt;10.0.0.0/16&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;Subnets:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#&lt;/th&gt;
+&lt;th&gt;Name&lt;/th&gt;
+&lt;th&gt;Address&lt;/th&gt;
+&lt;th&gt;NSG&lt;/th&gt;
+&lt;th&gt;Delegation&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;snet-cc&lt;/td&gt;
+&lt;td&gt;10.0.0.0/24&lt;/td&gt;
+&lt;td&gt;nsg-snet-cc&lt;/td&gt;
+&lt;td&gt;--&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;snet-slurm&lt;/td&gt;
+&lt;td&gt;10.0.1.0/24&lt;/td&gt;
+&lt;td&gt;nsg-snet-slurm&lt;/td&gt;
+&lt;td&gt;--&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;snet-anf&lt;/td&gt;
+&lt;td&gt;10.0.2.0/24&lt;/td&gt;
+&lt;td&gt;nsg-snet-anf&lt;/td&gt;
+&lt;td&gt;Microsoft.NetApp/volumes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;snet-pe&lt;/td&gt;
+&lt;td&gt;10.0.3.0/24&lt;/td&gt;
+&lt;td&gt;nsg-snet-pe&lt;/td&gt;
+&lt;td&gt;--&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;snet-worker&lt;/td&gt;
+&lt;td&gt;10.0.4.0/24&lt;/td&gt;
+&lt;td&gt;nsg-snet-worker&lt;/td&gt;
+&lt;td&gt;--&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;snet-mysql&lt;/td&gt;
+&lt;td&gt;10.0.5.0/23&lt;/td&gt;
+&lt;td&gt;nsg-snet-mysql&lt;/td&gt;
+&lt;td&gt;Microsoft.DBforMySQL/flexibleServers&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Azure cli command to create a virtual network with subnets:&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;az group create &lt;span class=&#34;token parameter variable&#34;&gt;-l&lt;/span&gt; japaneast &lt;span class=&#34;token parameter variable&#34;&gt;-n&lt;/span&gt; rg-jpe-cc-slurm-20230715&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;az network nsg create &lt;span class=&#34;token parameter variable&#34;&gt;-g&lt;/span&gt; rg-jpe-cc-slurm-20230715 &lt;span class=&#34;token parameter variable&#34;&gt;-l&lt;/span&gt; japaneast &lt;span class=&#34;token parameter variable&#34;&gt;-n&lt;/span&gt; nsg-snet-cc&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;az network nsg create &lt;span class=&#34;token parameter variable&#34;&gt;-g&lt;/span&gt; rg-jpe-cc-slurm-20230715 &lt;span class=&#34;token parameter variable&#34;&gt;-l&lt;/span&gt; japaneast &lt;span class=&#34;token parameter variable&#34;&gt;-n&lt;/span&gt; nsg-snet-slurm&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;az network nsg create &lt;span class=&#34;token parameter variable&#34;&gt;-g&lt;/span&gt; rg-jpe-cc-slurm-20230715 &lt;span class=&#34;token parameter variable&#34;&gt;-l&lt;/span&gt; japaneast &lt;span class=&#34;token parameter variable&#34;&gt;-n&lt;/span&gt; nsg-snet-anf&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;az network nsg create &lt;span class=&#34;token parameter variable&#34;&gt;-g&lt;/span&gt; rg-jpe-cc-slurm-20230715 &lt;span class=&#34;token parameter variable&#34;&gt;-l&lt;/span&gt; japaneast &lt;span class=&#34;token parameter variable&#34;&gt;-n&lt;/span&gt; nsg-snet-pe&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;az network nsg create &lt;span class=&#34;token parameter variable&#34;&gt;-g&lt;/span&gt; rg-jpe-cc-slurm-20230715 &lt;span class=&#34;token parameter variable&#34;&gt;-l&lt;/span&gt; japaneast &lt;span class=&#34;token parameter variable&#34;&gt;-n&lt;/span&gt; nsg-snet-worker&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;az network nsg create &lt;span class=&#34;token parameter variable&#34;&gt;-g&lt;/span&gt; rg-jpe-cc-slurm-20230715 &lt;span class=&#34;token parameter variable&#34;&gt;-l&lt;/span&gt; japaneast &lt;span class=&#34;token parameter variable&#34;&gt;-n&lt;/span&gt; nsg-snet-mysql&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;az network vnet create &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --resource-group rg-jpe-cc-slurm-20230715 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token parameter variable&#34;&gt;--name&lt;/span&gt; vnet-jpe-cc-slurm-20230715 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --address-prefixes &lt;span class=&#34;token number&#34;&gt;10.0&lt;/span&gt;.0.0/16 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --subnet-name snet-cc &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --subnet-prefixes &lt;span class=&#34;token number&#34;&gt;10.0&lt;/span&gt;.0.0/24 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --network-security-group nsg-snet-cc&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;az network vnet subnet create &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --resource-group rg-jpe-cc-slurm-20230715 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --vnet-name vnet-jpe-cc-slurm-20230715 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token parameter variable&#34;&gt;--name&lt;/span&gt; snet-slurm &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --address-prefixes &lt;span class=&#34;token number&#34;&gt;10.0&lt;/span&gt;.1.0/24 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --network-security-group nsg-snet-slurm&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;25&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;az network vnet subnet create &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;26&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --resource-group rg-jpe-cc-slurm-20230715 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;27&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --vnet-name vnet-jpe-cc-slurm-20230715 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;28&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token parameter variable&#34;&gt;--name&lt;/span&gt; snet-anf &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;29&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --address-prefixes &lt;span class=&#34;token number&#34;&gt;10.0&lt;/span&gt;.2.0/24 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;30&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --network-security-group nsg-snet-anf &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;31&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token parameter variable&#34;&gt;--delegations&lt;/span&gt; Microsoft.NetApp/volumes&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;32&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;33&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;az network vnet subnet create &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;34&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --resource-group rg-jpe-cc-slurm-20230715 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;35&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --vnet-name vnet-jpe-cc-slurm-20230715 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;36&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token parameter variable&#34;&gt;--name&lt;/span&gt; snet-pe &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;37&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --address-prefixes &lt;span class=&#34;token number&#34;&gt;10.0&lt;/span&gt;.3.0/24 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;38&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --network-security-group nsg-snet-pe&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;39&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;40&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;az network vnet subnet create &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;41&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --resource-group rg-jpe-cc-slurm-20230715 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;42&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --vnet-name vnet-jpe-cc-slurm-20230715 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;43&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token parameter variable&#34;&gt;--name&lt;/span&gt; snet-worker &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;44&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --address-prefixes &lt;span class=&#34;token number&#34;&gt;10.0&lt;/span&gt;.4.0/24 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;45&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --network-security-group nsg-snet-worker&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;46&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;47&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;az network vnet subnet create &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;48&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --resource-group rg-jpe-cc-slurm-20230715 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;49&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --vnet-name vnet-jpe-cc-slurm-20230715 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;50&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token parameter variable&#34;&gt;--name&lt;/span&gt; snet-mysql &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;51&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --address-prefixes &lt;span class=&#34;token number&#34;&gt;10.0&lt;/span&gt;.5.0/24 &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;52&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    --network-security-group nsg-snet-mysql &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;53&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token parameter variable&#34;&gt;--delegations&lt;/span&gt; Microsoft.DBforMySQL/flexibleServers&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;create-a-cyclecloud-cluster&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#create-a-cyclecloud-cluster&#34;&gt;#&lt;/a&gt; Create a CycleCloud Cluster&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Refer to &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL2N5Y2xlY2xvdWQvcXMtaW5zdGFsbC1tYXJrZXRwbGFjZT92aWV3PWN5Y2xlY2xvdWQtOA==&#34;&gt;Create a CycleCloud Cluster&lt;/span&gt; to create a CycleCloud Cluster.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;After the CycleCloud Cluster is created, you can access the CycleCloud Web UI with the URL:  &lt;code&gt;http://cyclecloud-cluster-IP&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: Before access to CycleCloud Web UI, you need to add an inbound rule to the NSG of CycleCloud Cluster subnet. The inbound rules (HTTP/HTTPS) are to allow the access from your IP address to the CycleCloud Cluster subnet.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a Storage account for CycleCloud locker storage.&lt;br /&gt;
+(1) Create a storage account with private endpoint enabled for as a private CycleCloud locker storage.&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-3.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add a subscription to CycleCloud Cluster&lt;/p&gt;
+&lt;p&gt;(1) Before adding a subscription, you need to enable the system assigned identity of CycleCloud Cluster VM.&lt;/p&gt;
+&lt;p&gt;(2) On VM settings, click  &lt;code&gt;Identity&lt;/code&gt;  and click  &lt;code&gt;Azure role assignments&lt;/code&gt;  to add a role assignment to the system assigned identity.&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-1.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;(3) Assign the subscription  &lt;code&gt;contributor&lt;/code&gt;  role to the system assigned identity. Contributor role has a higher privilege level than CycleCloud required. In case of security concern, you can assign a lower privilege level role to the system assigned identity. Refer to &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL2N5Y2xlY2xvdWQvaG93LXRvL21hbmFnZWQtaWRlbnRpdGllcz92aWV3PWN5Y2xlY2xvdWQtOCNjcmVhdGUtYS1jdXN0b20tcm9sZS1hbmQtbWFuYWdlZC1pZGVudGl0eS1mb3ItY3ljbGVjbG91ZA==&#34;&gt;CycleCloud Documentation&lt;/span&gt; to crate a custom role for CycleCloud.&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-2.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;(4) After adding a role assignment to the system assigned identity, you can add a subscription to CycleCloud Cluster. On the CycleCloud Web UI, click  &lt;code&gt;Add Subscription&lt;/code&gt;  and input the storage created in previous step. Save as a CycleCloud subscription.&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-4.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;prepare-a-nfs-for-slurm-cluster&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#prepare-a-nfs-for-slurm-cluster&#34;&gt;#&lt;/a&gt; Prepare a NFS for Slurm Cluster&lt;/h2&gt;
+&lt;p&gt;As we&#39;re building a high availability Scheduler environment, we need to prepare a NFS server for Slurm Cluster. The NFS server is used to store the Slurm configuration files and the Slurm state files. The NFS server can be a VM or a NFS service. In this case, we use Azure NetApp Files as a NFS service.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Create Azure NetApp Files&lt;/p&gt;
+&lt;p&gt;(1) Create a Azure NetApp Files service. Refer to &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9kb2NzLm1pY3Jvc29mdC5jb20vZW4tdXMvYXp1cmUvYXp1cmUtbmV0YXBwLWZpbGVzL2F6dXJlLW5ldGFwcC1maWxlcy1jcmVhdGUtdm9sdW1lcz90YWJzPWF6dXJlLXBvcnRhbCNjcmVhdGUtYS1uZXRhcHAtYWNjb3VudC1hbmQtY2FwYWNpdHktcG9vbA==&#34;&gt;Create a Azure NetApp Files service&lt;/span&gt;to create a Azure NetApp Files service and a capacity pool.&lt;/p&gt;
+&lt;p&gt;(2) Create two volumes in the capacity pool ( &lt;code&gt;sched&lt;/code&gt;  and  &lt;code&gt;shared&lt;/code&gt; ).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; A. Set the `Network features` to `Standard`
+ B. Set the `Protocol types` to `NFSv4.1`
+ C. Set the `Unix permissions` to `0775`
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-5.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-6.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Write down the NFS mount point of the two volumes. The NFS mount point is used to mount the volumes to the Slurm Cluster VMs.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-7.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;create-a-mysql-database-service&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#create-a-mysql-database-service&#34;&gt;#&lt;/a&gt; Create a MySQL Database Service&lt;/h2&gt;
+&lt;p&gt;Create a MySQL Database Service. Refer to &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL215c3FsL2ZsZXhpYmxlLXNlcnZlci9xdWlja3N0YXJ0LWNyZWF0ZS1zZXJ2ZXItcG9ydGFs&#34;&gt;Create a MySQL Database Service&lt;/span&gt; to create a MySQL Flexible Server.&lt;/p&gt;
+&lt;p&gt;In the network setting, select the  &lt;code&gt;Private access (VNet Integration)&lt;/code&gt;  as Connectivity method.&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-8.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;prepare-a-vm-image-for-slurm-cluster&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#prepare-a-vm-image-for-slurm-cluster&#34;&gt;#&lt;/a&gt; Prepare a VM image for Slurm Cluster&lt;/h2&gt;
+&lt;p&gt;In this tutorial, we use OpenLogic CentOS 7.9 generation 2 from Marketplace as a base OS image. You can use your own VM image as a base OS image.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a VM from the base OS image. Login to the image and install the following packages.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-i&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;yum update&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;wget&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-P&lt;/span&gt; /tmp https://raw.githubusercontent.com/themorey/cyclecloudscripts/main/slurm-install.sh&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;bash&lt;/span&gt; /tmp/slurm-install.sh&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-9.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-10.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;After installing the packages, run the following command to check if it works properly without error.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;which&lt;/span&gt; sinfo&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;id&lt;/span&gt; slurm&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;Deprovision the VM, remove  &lt;code&gt;+user&lt;/code&gt;  if you want to keep the user account.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;waagent deprovision+user &lt;span class=&#34;token parameter variable&#34;&gt;--force&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-11.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;There is an issue that Scheduler VM not register to Azure DNS successfully, thus we need to do following step to mitigate the issue.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We need to this step after deprovision waagent and before create a VM image.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Check the  &lt;code&gt;/etc/sysconfig/network-scripts/ifcfg-eth0&lt;/code&gt;  file and remove&lt;br /&gt;
+ &lt;code&gt;DHCP_HOSTNAME=localhost.localdomain&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-12.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;Capture the VM to VM image. Refer to &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL3ZpcnR1YWwtbWFjaGluZXMvZ2VuZXJhbGl6ZQ==&#34;&gt;Create a VM image&lt;/span&gt; to create a VM image.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;prepare-a-slurm-cluster-project-template-for-cyclecloud&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#prepare-a-slurm-cluster-project-template-for-cyclecloud&#34;&gt;#&lt;/a&gt; Prepare a Slurm Cluster project template for CycleCloud&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Login to CycleCloud Server and initialize the CycleCloud Server.&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;cyclecloud initialize&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-16.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Login to CycleCloud Server and prepare Azure-Slurm 2.7.3 project&lt;/p&gt;
+&lt;p&gt;(1) Get the Azure-Slurm 2.7.3 project from GitHub.&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;mkdir&lt;/span&gt; slurm273&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;cyclecloud project fetch https://github.com/Azure/cyclecloud-slurm/releases/2.7.3 slurm273&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;(2) Build the project&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;cd&lt;/span&gt; slurm273&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;cyclecloud project build &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;mkdir&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; /opt/cycle_server/work/staging/projects/slurm/2.7.3&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;mkdir&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; /opt/cycle_server/work/staging/projects/slurm/blobs &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;cp&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-r&lt;/span&gt; build/slurm/* /opt/cycle_server/work/staging/projects/slurm/2.7.3&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;cp&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-r&lt;/span&gt; blobs/* /opt/cycle_server/work/staging/projects/slurm/blobs&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;chown&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-R&lt;/span&gt; cycle_server:cycle_server /opt/cycle_server/work/staging&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;(3) Add following lines to  &lt;code&gt;~/slurm273/specs/default/chef/site-cookbooks/slurm/recipes/login.rb&lt;/code&gt;  for login server template&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;link&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;/etc/slurm/keep_alive.conf&#39;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;do&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; to &lt;span class=&#34;token string&#34;&gt;&#39;/sched/keep_alive.conf&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; owner &lt;span class=&#34;token string&#34;&gt;&#34;#&amp;#123;slurmuser&amp;#125;&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; group &lt;span class=&#34;token string&#34;&gt;&#34;#&amp;#123;slurmuser&amp;#125;&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;end&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;service&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;munge&#39;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;do&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; action &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;:enable, :restart&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;end&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;include_recipe &lt;span class=&#34;token string&#34;&gt;&#39;slurm::accounting&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-13.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Preload the MySQL certificate&lt;/p&gt;
+&lt;p&gt;(1) On CycleCloud Server, download the certificate to  &lt;code&gt;~/slurm273/specs/default/chef/site-cookbooks/slurm/files/default&lt;/code&gt;  folder.&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;cd&lt;/span&gt; ~/slurm273/specs/default/chef/site-cookbooks/slurm/files/default&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;wget&lt;/span&gt; https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-14.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;(2) Edit the  &lt;code&gt;~/slurm273/specs/default/chef/site-cookbooks/slurm/recipes/accounting.rb&lt;/code&gt;  file with following changes.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; A. Change the `remote_file` to `cookbook_file`
+ B. Comment out the original source line
+ C. Add a new source to `DigiCertGlobalRootCA.crt.pem`
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;cookbook_file &lt;span class=&#34;token string&#34;&gt;&#39;/etc/slurm/BaltimoreCyberTrustRoot.crt.pem&#39;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;do&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;span class=&#34;token comment&#34;&gt;#source node[:slurm][:accounting][:certificate_url]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;span class=&#34;token builtin class-name&#34;&gt;source&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;DigiCertGlobalRootCA.crt.pem&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; owner &lt;span class=&#34;token string&#34;&gt;&#39;slurm&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; group &lt;span class=&#34;token string&#34;&gt;&#39;slurm&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; mode 0644&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;end&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-15.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Edit the Slurm Cluster template&lt;/p&gt;
+&lt;p&gt;(1) Edit the  &lt;code&gt;~/slurm273/templates/slurm.txt&lt;/code&gt;  file, change following lines.&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;cluster-init slurm:default:2.7.3&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;cluster-init slurm:scheduler:2.7.3&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;cluster-init slurm:login:2.7.3&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;cluster-init slurm:execute:2.7.3&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;(2) Run the following command to set slurm.install to false.&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sed&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-i&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;/slurm_version$/a \\tslurm.install = false&#39;&lt;/span&gt; ~/slurm273/templates/slurm.txt&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Upload the project files to CycleCloud locker storage.&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;cyclecloud locker list &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;cyclecloud project upload &lt;span class=&#34;token string&#34;&gt;&#34;storagename&#34;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;in my case: &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;cc-slurm-20230715-storage&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;create-a-slurm-cluster-with-cyclecloud&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#create-a-slurm-cluster-with-cyclecloud&#34;&gt;#&lt;/a&gt; Create a Slurm Cluster with CycleCloud&lt;/h2&gt;
+&lt;p&gt;Login to CycleCloud Server, run the following command to create a Slurm Cluster.&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;cyclecloud import_cluster slurm-20230715 &lt;span class=&#34;token parameter variable&#34;&gt;-f&lt;/span&gt; ~/slurm273/templates/slurm.txt&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-17.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;configure-slurm-cluster&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#configure-slurm-cluster&#34;&gt;#&lt;/a&gt; Configure Slurm Cluster&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Login to CycleCloud web UI, edit the Slurm Cluster settings&lt;/p&gt;
+&lt;p&gt;(1) Configure the  &lt;code&gt;Network Attached Storage&lt;/code&gt;  to the NFS volume created in previous step. Where IP address is your NFS volume mount path.&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-18.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;(2) Configure the  &lt;code&gt;Advanced Settings&lt;/code&gt;  to enable the  &lt;code&gt;Slurm HA Scheduler&lt;/code&gt;  and  &lt;code&gt;MySQL HA Database&lt;/code&gt; .&lt;/p&gt;
+&lt;p&gt;(3) Set the Scheduler OS and HPC OS, HTC OS to  &lt;code&gt;custom image&lt;/code&gt;  and set to VM image&#39;s resource id.&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-19.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;(4) Uncheck  &lt;code&gt;Return Proxy&lt;/code&gt;  and  &lt;code&gt;Public Head Node&lt;/code&gt;  settings.&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-20.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Now we have all the components ready, we can start to use Slurm Cluster.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;reference&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#reference&#34;&gt;#&lt;/a&gt; Reference&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[1]&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL0F6dXJlL2N5Y2xlY2xvdWQtc2x1cm0=&#34;&gt;GitHub - Azure CycleCloud Slurm&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;[2]&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL2N5Y2xlY2xvdWQvcXMtaW5zdGFsbC1tYXJrZXRwbGFjZT92aWV3PWN5Y2xlY2xvdWQtOA==&#34;&gt;Quickstart - Install CycleCloud using the Marketplace image&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;[3]&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL2N5Y2xlY2xvdWQvaG93LXRvL21hbmFnZWQtaWRlbnRpdGllcz92aWV3PWN5Y2xlY2xvdWQtOCNjcmVhdGUtYS1jdXN0b20tcm9sZS1hbmQtbWFuYWdlZC1pZGVudGl0eS1mb3ItY3ljbGVjbG91ZA==&#34;&gt;Create a custom role and managed identity for CycleCloud&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;[4]&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9kb2NzLm1pY3Jvc29mdC5jb20vZW4tdXMvYXp1cmUvYXp1cmUtbmV0YXBwLWZpbGVzL2F6dXJlLW5ldGFwcC1maWxlcy1jcmVhdGUtdm9sdW1lcz90YWJzPWF6dXJlLXBvcnRhbCNjcmVhdGUtYS1uZXRhcHAtYWNjb3VudC1hbmQtY2FwYWNpdHktcG9vbA==&#34;&gt;Create an NFS volume for Azure NetApp Files&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;[5]&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL215c3FsL2ZsZXhpYmxlLXNlcnZlci9xdWlja3N0YXJ0LWNyZWF0ZS1zZXJ2ZXItcG9ydGFs&#34;&gt;Quickstart: Use the Azure portal to create an Azure Database for MySQL - Flexible Server&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;[6]&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL3ZpcnR1YWwtbWFjaGluZXMvZ2VuZXJhbGl6ZQ==&#34;&gt;Remove machine specific information by deprovisioning or generalizing a VM before creating an image&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
 </content>
-        <updated>2023-05-25T09:35:26.956Z</updated>
+        <category term="HPC" scheme="https://samlin-msft.github.io/categories/HPC/" />
+        <category term="CycleCloud" scheme="https://samlin-msft.github.io/tags/CycleCloud/" />
+        <category term="Slurm" scheme="https://samlin-msft.github.io/tags/Slurm/" />
+        <category term="HPC" scheme="https://samlin-msft.github.io/tags/HPC/" />
+        <category term="Intermediate" scheme="https://samlin-msft.github.io/tags/Intermediate/" />
+        <updated>2023-07-15T09:14:29.000Z</updated>
     </entry>
 </feed>
