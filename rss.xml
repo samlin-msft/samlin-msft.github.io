@@ -31,8 +31,8 @@
             <title>Create a local rpm repo for offline installation</title>
             <link>https://samlin-msft.github.io/2023/07/28/Create-a-local-rpm-repo-for-offline-installation/</link>
             <category term="Linux" scheme="https://samlin-msft.github.io/categories/Linux/" />
-            <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
             <category term="RPM" scheme="https://samlin-msft.github.io/tags/RPM/" />
+            <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
             <pubDate>Fri, 28 Jul 2023 12:15:15 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;create-a-local-rpm-repo-for-offline-installation&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#create-a-local-rpm-repo-for-offline-installation&#34;&gt;#&lt;/a&gt; Create a local rpm repo for offline installation&lt;/h1&gt;
 &lt;h2 id=&#34;1-creating-a-local-repo-and-download-rpm-packages-on-a-machine-with-internet-access&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-creating-a-local-repo-and-download-rpm-packages-on-a-machine-with-internet-access&#34;&gt;#&lt;/a&gt; 1. Creating a local repo and download rpm packages on a machine with internet access&lt;/h2&gt;
@@ -58,11 +58,11 @@ protect=1
             <title>Gathering CycleCloud service JVM heap usage to Log Analytics</title>
             <link>https://samlin-msft.github.io/2023/07/27/Gathering-CycleCloud-service-JVM-heap-usage-to-Log-Analytics/</link>
             <category term="CycleCloud" scheme="https://samlin-msft.github.io/categories/CycleCloud/" />
+            <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
             <category term="CycleCloud" scheme="https://samlin-msft.github.io/tags/CycleCloud/" />
             <category term="Log Analytics" scheme="https://samlin-msft.github.io/tags/Log-Analytics/" />
             <category term="JVM" scheme="https://samlin-msft.github.io/tags/JVM/" />
             <category term="Heap" scheme="https://samlin-msft.github.io/tags/Heap/" />
-            <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
             <pubDate>Thu, 27 Jul 2023 09:42:17 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;gathering-cyclecloud-service-jvm-heap-usage-to-log-analytics&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#gathering-cyclecloud-service-jvm-heap-usage-to-log-analytics&#34;&gt;#&lt;/a&gt; Gathering CycleCloud service JVM heap usage to Log Analytics&lt;/h1&gt;
 &lt;h2 id=&#34;準備事項&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#準備事項&#34;&gt;#&lt;/a&gt; 準備事項&lt;/h2&gt;
