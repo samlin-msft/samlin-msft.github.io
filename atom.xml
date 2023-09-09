@@ -32,9 +32,9 @@
 &lt;/ul&gt;
 </content>
         <category term="APIM" scheme="https://samlin-msft.github.io/categories/APIM/" />
-        <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
         <category term="APIM" scheme="https://samlin-msft.github.io/tags/APIM/" />
         <category term="Azure OpenAI" scheme="https://samlin-msft.github.io/tags/Azure-OpenAI/" />
+        <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
         <updated>2023-08-21T06:23:47.000Z</updated>
     </entry>
     <entry>
@@ -103,9 +103,9 @@
 &lt;/ul&gt;
 </content>
         <category term="APIM" scheme="https://samlin-msft.github.io/categories/APIM/" />
-        <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
         <category term="APIM" scheme="https://samlin-msft.github.io/tags/APIM/" />
         <category term="Azure OpenAI" scheme="https://samlin-msft.github.io/tags/Azure-OpenAI/" />
+        <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
         <updated>2023-08-21T02:35:45.000Z</updated>
     </entry>
     <entry>
@@ -181,8 +181,8 @@ curl.exe -X GET   &amp;quot;https://&amp;lt;resource-name&amp;gt;.cognitiveservi
 &lt;figure class=&#34;highlight yaml&#34;&gt;&lt;figcaption data-lang=&#34;YAML&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;local&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;name=Local repository&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;baseurl=file&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;///root/localrepo&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;enabled=1&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;gpgcheck=0&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;protect=1&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;3-install-rpm-packages&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-install-rpm-packages&#34;&gt;#&lt;/a&gt; (3) Install rpm packages&lt;/h3&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;cd&lt;/span&gt; /root/localrepo&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;yum localinstall java-1.8.0-openjdk-devel-1.8.0.362.b08-1.el7_9.x86_64.rpm &lt;span class=&#34;token parameter variable&#34;&gt;--disablerepo&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;* &lt;span class=&#34;token parameter variable&#34;&gt;--enablerepo&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;local&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
         <category term="Linux" scheme="https://samlin-msft.github.io/categories/Linux/" />
-        <category term="RPM" scheme="https://samlin-msft.github.io/tags/RPM/" />
         <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
+        <category term="RPM" scheme="https://samlin-msft.github.io/tags/RPM/" />
         <updated>2023-07-28T04:15:15.000Z</updated>
     </entry>
     <entry>
@@ -345,8 +345,8 @@ B. Log Analytics workspace 並取得 Workspace ID 與 Primary Key 儲存於 Key 
 &lt;/code&gt;&lt;/pre&gt;
 </content>
         <category term="CycleCloud" scheme="https://samlin-msft.github.io/categories/CycleCloud/" />
-        <category term="CycleCloud" scheme="https://samlin-msft.github.io/tags/CycleCloud/" />
         <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
+        <category term="CycleCloud" scheme="https://samlin-msft.github.io/tags/CycleCloud/" />
         <category term="Log Analytics" scheme="https://samlin-msft.github.io/tags/Log-Analytics/" />
         <category term="JVM" scheme="https://samlin-msft.github.io/tags/JVM/" />
         <category term="Heap" scheme="https://samlin-msft.github.io/tags/Heap/" />

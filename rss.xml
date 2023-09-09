@@ -17,9 +17,9 @@
             <title>Learning APIM Series (4) - Enabling API activity diagnostics logs with APIM</title>
             <link>https://samlin-msft.github.io/2023/08/21/Enabling-API-activity-diagnostics-logs-with-APIM/</link>
             <category term="APIM" scheme="https://samlin-msft.github.io/categories/APIM/" />
-            <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
             <category term="APIM" scheme="https://samlin-msft.github.io/tags/APIM/" />
             <category term="Azure OpenAI" scheme="https://samlin-msft.github.io/tags/Azure-OpenAI/" />
+            <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
             <pubDate>Mon, 21 Aug 2023 14:23:47 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;enabling-api-activity-diagnostics-logs-with-apim&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#enabling-api-activity-diagnostics-logs-with-apim&#34;&gt;#&lt;/a&gt; Enabling API activity diagnostics logs with APIM&lt;/h1&gt;
 &lt;h2 id=&#34;1-enable-diagnostics-logs-on-apim&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-enable-diagnostics-logs-on-apim&#34;&gt;#&lt;/a&gt; 1. Enable diagnostics logs on APIM&lt;/h2&gt;
@@ -45,9 +45,9 @@
             <title>Learning APIM Series (3) - Configuring multiple Azure OpenAI instances with APIM and managed identity</title>
             <link>https://samlin-msft.github.io/2023/08/21/Configure-APIM-with-multiple-Azure-OpenAI-with-managed-identity/</link>
             <category term="APIM" scheme="https://samlin-msft.github.io/categories/APIM/" />
-            <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
             <category term="APIM" scheme="https://samlin-msft.github.io/tags/APIM/" />
             <category term="Azure OpenAI" scheme="https://samlin-msft.github.io/tags/Azure-OpenAI/" />
+            <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
             <pubDate>Mon, 21 Aug 2023 10:35:45 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;learning-apim-series-3-configuring-multiple-azure-openai-instances-with-apim-and-managed-identity&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#learning-apim-series-3-configuring-multiple-azure-openai-instances-with-apim-and-managed-identity&#34;&gt;#&lt;/a&gt; Learning APIM Series (3) - Configuring multiple Azure OpenAI instances with APIM and managed identity&lt;/h1&gt;
 &lt;h2 id=&#34;1-enable-apim-managed-identity&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-enable-apim-managed-identity&#34;&gt;#&lt;/a&gt; 1. Enable APIM managed identity&lt;/h2&gt;
@@ -172,8 +172,8 @@ curl.exe -X GET   &amp;quot;https://&amp;lt;resource-name&amp;gt;.cognitiveservi
             <title>Create a local rpm repo for offline installation</title>
             <link>https://samlin-msft.github.io/2023/07/28/Create-a-local-rpm-repo-for-offline-installation/</link>
             <category term="Linux" scheme="https://samlin-msft.github.io/categories/Linux/" />
-            <category term="RPM" scheme="https://samlin-msft.github.io/tags/RPM/" />
             <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
+            <category term="RPM" scheme="https://samlin-msft.github.io/tags/RPM/" />
             <pubDate>Fri, 28 Jul 2023 12:15:15 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;create-a-local-rpm-repo-for-offline-installation&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#create-a-local-rpm-repo-for-offline-installation&#34;&gt;#&lt;/a&gt; Create a local rpm repo for offline installation&lt;/h1&gt;
 &lt;h2 id=&#34;1-creating-a-local-repo-and-download-rpm-packages-on-a-machine-with-internet-access&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-creating-a-local-repo-and-download-rpm-packages-on-a-machine-with-internet-access&#34;&gt;#&lt;/a&gt; 1. Creating a local repo and download rpm packages on a machine with internet access&lt;/h2&gt;
@@ -193,8 +193,8 @@ curl.exe -X GET   &amp;quot;https://&amp;lt;resource-name&amp;gt;.cognitiveservi
             <title>Gathering CycleCloud service JVM heap usage to Log Analytics</title>
             <link>https://samlin-msft.github.io/2023/07/27/Gathering-CycleCloud-service-JVM-heap-usage-to-Log-Analytics/</link>
             <category term="CycleCloud" scheme="https://samlin-msft.github.io/categories/CycleCloud/" />
-            <category term="CycleCloud" scheme="https://samlin-msft.github.io/tags/CycleCloud/" />
             <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
+            <category term="CycleCloud" scheme="https://samlin-msft.github.io/tags/CycleCloud/" />
             <category term="Log Analytics" scheme="https://samlin-msft.github.io/tags/Log-Analytics/" />
             <category term="JVM" scheme="https://samlin-msft.github.io/tags/JVM/" />
             <category term="Heap" scheme="https://samlin-msft.github.io/tags/Heap/" />
