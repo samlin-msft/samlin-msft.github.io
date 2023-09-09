@@ -199,8 +199,8 @@ curl.exe -X GET   &amp;quot;https://&amp;lt;resource-name&amp;gt;.cognitiveservi
             <title>Gathering CycleCloud service JVM heap usage to Log Analytics</title>
             <link>https://samlin-msft.github.io/2023/07/27/Gathering-CycleCloud-service-JVM-heap-usage-to-Log-Analytics/</link>
             <category term="CycleCloud" scheme="https://samlin-msft.github.io/categories/CycleCloud/" />
-            <category term="CycleCloud" scheme="https://samlin-msft.github.io/tags/CycleCloud/" />
             <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
+            <category term="CycleCloud" scheme="https://samlin-msft.github.io/tags/CycleCloud/" />
             <category term="Log Analytics" scheme="https://samlin-msft.github.io/tags/Log-Analytics/" />
             <category term="JVM" scheme="https://samlin-msft.github.io/tags/JVM/" />
             <category term="Heap" scheme="https://samlin-msft.github.io/tags/Heap/" />
