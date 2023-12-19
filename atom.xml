@@ -8,7 +8,63 @@
     <author>
       <name>山姆大叔</name>
     </author>
-    <updated>2023-08-21T06:23:47.000Z</updated>
+    <updated>2023-12-19T06:38:47.000Z</updated>
+    <entry>
+        <id>https://samlin-msft.github.io/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/</id>
+        <title>Slurm monitoring with Prometheus and Grafana</title>
+        <link rel="alternate" href="https://samlin-msft.github.io/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/"/>
+        <content type="html">&lt;h1 id=&#34;slurm-monitoring-with-prometheus-and-grafana&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#slurm-monitoring-with-prometheus-and-grafana&#34;&gt;#&lt;/a&gt; Slurm Monitoring with Prometheus and Grafana&lt;/h1&gt;
+&lt;p&gt;Monitoring Slurm, a powerful workload manager for Linux clusters, is crucial for optimizing cluster performance and resource utilization. In this blog post, we&#39;ll explore how to set up Slurm monitoring using Prometheus and Grafana, two popular open-source tools for monitoring and visualization.&lt;/p&gt;
+&lt;h2 id=&#34;preparing-slurm-exporter&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#preparing-slurm-exporter&#34;&gt;#&lt;/a&gt; Preparing Slurm Exporter&lt;/h2&gt;
+&lt;p&gt;To start monitoring Slurm with Prometheus, we first need to prepare the Slurm Exporter. Follow these steps: &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zd3NtaXRoLmNjL3Bvc3RzL2dyYWZhbmEtc2x1cm0uaHRtbA==&#34;&gt;1&lt;/span&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; yum &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-y&lt;/span&gt; golang &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;git&lt;/span&gt; clone &lt;span class=&#34;token parameter variable&#34;&gt;-b&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0.20&lt;/span&gt; https://github.com/vpenso/prometheus-slurm-exporter.git &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;cd&lt;/span&gt; prometheus-slurm-exporter &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;make&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;cp&lt;/span&gt; bin/prometheus-slurm-exporter /usr/bin/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;su&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;cat&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; /etc/systemd/system/prometheus-slurm-exporter.service &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;EOF &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;[Unit] &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Description=Prometheus SLURM Exporter &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;[Service] &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;ExecStart=/usr/bin/prometheus-slurm-exporter &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Restart=on-failure &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;RestartSec=15 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Type=simple &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;[Install] &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;WantedBy=multi-user.target &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;EOF&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; systemctl daemon-reload &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; systemctl &lt;span class=&#34;token builtin class-name&#34;&gt;enable&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--now&lt;/span&gt; prometheus-slurm-exporter&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;This installs Golang, clones the Slurm Exporter repository, builds the exporter, and sets it up as a systemd service.&lt;/p&gt;
+&lt;h2 id=&#34;preparing-node-exporter&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#preparing-node-exporter&#34;&gt;#&lt;/a&gt; Preparing Node Exporter&lt;/h2&gt;
+&lt;p&gt;Next, we prepare the Node Exporter for system-level metrics:&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zd3NtaXRoLmNjL3Bvc3RzL2dyYWZhbmEtc2x1cm0uaHRtbA==&#34;&gt;1&lt;/span&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;wget&lt;/span&gt; https://github.com/prometheus/node_exporter/releases/download/v1.7.0/node_exporter-1.7.0.linux-amd64.tar.gz&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;tar&lt;/span&gt; xvfz node_exporter-1.7.0.linux-amd64.tar.gz&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;cd&lt;/span&gt; node_exporter-1.7.0.linux-amd64&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;cp&lt;/span&gt; node_exporter /usr/bin/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;su&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;cat&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; /etc/systemd/system/node-exporter.service &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;EOF &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;[Unit] &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Description=Prometheus Node Exporter&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;[Service] &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;ExecStart=/usr/bin/node_exporter &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Restart=on-failure &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;RestartSec=15 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Type=simple &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;[Install] &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;WantedBy=multi-user.target &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;EOF&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; systemctl daemon-reload &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; systemctl &lt;span class=&#34;token builtin class-name&#34;&gt;enable&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--now&lt;/span&gt; node-exporter&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;This downloads and sets up the Node Exporter binary and creates a systemd service for automatic startup.&lt;/p&gt;
+&lt;h2 id=&#34;building-docker-image&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#building-docker-image&#34;&gt;#&lt;/a&gt; Building Docker Image&lt;/h2&gt;
+&lt;p&gt;Building a Docker image for Prometheus involves creating a Dockerfile and a prometheus.yml file. Here&#39;s a simple example Dockerfile:&lt;/p&gt;
+&lt;figure class=&#34;highlight dockerfile&#34;&gt;&lt;figcaption data-lang=&#34;Docker&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token instruction&#34;&gt;&lt;span class=&#34;token keyword&#34;&gt;FROM&lt;/span&gt; prom/prometheus&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token instruction&#34;&gt;&lt;span class=&#34;token keyword&#34;&gt;ADD&lt;/span&gt; prometheus.yml /etc/prometheus/&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;Build the Docker image using:&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; build &lt;span class=&#34;token parameter variable&#34;&gt;-t&lt;/span&gt; my-prometheus &lt;span class=&#34;token builtin class-name&#34;&gt;.&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;pushing-image-to-acr&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#pushing-image-to-acr&#34;&gt;#&lt;/a&gt; Pushing Image to ACR&lt;/h2&gt;
+&lt;p&gt;To deploy the Docker images to Azure Container Registry (ACR), follow these steps:&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;az acr login &lt;span class=&#34;token parameter variable&#34;&gt;--name&lt;/span&gt; prometheus20231215 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; tag my-prometheus:latest prometheus20231215.azurecr.io/my-prometheus:latest &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; push prometheus20231215.azurecr.io/my-prometheus:latest &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; tag grafana/grafana-oss:latest prometheus20231215.azurecr.io/grafana-oss:latest &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; push prometheus20231215.azurecr.io/grafana-oss:latest&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;Login to ACR, tag the images, and push them to the registry.&lt;/p&gt;
+&lt;h2 id=&#34;configuring-app-service-for-container&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#configuring-app-service-for-container&#34;&gt;#&lt;/a&gt; Configuring App Service for Container&lt;/h2&gt;
+&lt;p&gt;Configure Azure App Service for Containers to run Prometheus and Grafana. This step involves setting up the necessary environment variables and ensuring proper connectivity.&lt;br /&gt;
+&lt;img data-src=&#34;/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/image.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/image-1.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;exploring-prometheus-and-grafana-web-ui&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#exploring-prometheus-and-grafana-web-ui&#34;&gt;#&lt;/a&gt; Exploring Prometheus and Grafana Web UI&lt;/h2&gt;
+&lt;p&gt;By following these steps, you can establish a robust Slurm monitoring system using Prometheus and Grafana, empowering you to make informed decisions about cluster resource management.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Add the Prometheus as data source&lt;br /&gt;
+&lt;img data-src=&#34;/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/image-3.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add the Slurm dashboard&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ncmFmYW5hLmNvbS9ncmFmYW5hL2Rhc2hib2FyZHMvNDMyMy1zbHVybS1kYXNoYm9hcmQv&#34;&gt;2&lt;/span&gt;&lt;br /&gt;
+&lt;img data-src=&#34;/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/image-2.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After completing the setup, explore the Prometheus and Grafana Web UIs. Access metrics, create dashboards, and gain insights into Slurm cluster performance.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Prometheus Web UI&lt;br /&gt;
+&lt;img data-src=&#34;/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/image-4.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Grafana Web UI&lt;br /&gt;
+&lt;img data-src=&#34;/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/image-5.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;reference&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#reference&#34;&gt;#&lt;/a&gt; Reference&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[1]&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zd3NtaXRoLmNjL3Bvc3RzL2dyYWZhbmEtc2x1cm0uaHRtbA==&#34;&gt;Sean Smith - GPU Monitoring with Grafana&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;[2]&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ncmFmYW5hLmNvbS9ncmFmYW5hL2Rhc2hib2FyZHMvNDMyMy1zbHVybS1kYXNoYm9hcmQv&#34;&gt;Slurm dashboard&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <category term="Slurm" scheme="https://samlin-msft.github.io/tags/Slurm/" />
+        <category term="Prometheus" scheme="https://samlin-msft.github.io/tags/Prometheus/" />
+        <category term="Grafana" scheme="https://samlin-msft.github.io/tags/Grafana/" />
+        <updated>2023-12-19T06:38:47.000Z</updated>
+    </entry>
     <entry>
         <id>https://samlin-msft.github.io/2023/08/21/Enabling-API-activity-diagnostics-logs-with-APIM/</id>
         <title>Learning APIM Series (4) - Enabling API activity diagnostics logs with APIM</title>
@@ -32,9 +88,9 @@
 &lt;/ul&gt;
 </content>
         <category term="APIM" scheme="https://samlin-msft.github.io/categories/APIM/" />
+        <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
         <category term="APIM" scheme="https://samlin-msft.github.io/tags/APIM/" />
         <category term="Azure OpenAI" scheme="https://samlin-msft.github.io/tags/Azure-OpenAI/" />
-        <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
         <updated>2023-08-21T06:23:47.000Z</updated>
     </entry>
     <entry>
@@ -103,9 +159,9 @@
 &lt;/ul&gt;
 </content>
         <category term="APIM" scheme="https://samlin-msft.github.io/categories/APIM/" />
+        <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
         <category term="APIM" scheme="https://samlin-msft.github.io/tags/APIM/" />
         <category term="Azure OpenAI" scheme="https://samlin-msft.github.io/tags/Azure-OpenAI/" />
-        <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
         <updated>2023-08-21T02:35:45.000Z</updated>
     </entry>
     <entry>
@@ -148,9 +204,9 @@ curl.exe -X GET   &amp;quot;https://&amp;lt;resource-name&amp;gt;.cognitiveservi
 &lt;p&gt;&lt;img data-src=&#34;/2023/08/09/Enable-Custom-Translator-with-VNet-integration/image-8.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
 </content>
         <category term="Azure Cognitive Services" scheme="https://samlin-msft.github.io/categories/Azure-Cognitive-Services/" />
-        <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
         <category term="Custom Translator" scheme="https://samlin-msft.github.io/tags/Custom-Translator/" />
         <category term="Azure Cognitive Services" scheme="https://samlin-msft.github.io/tags/Azure-Cognitive-Services/" />
+        <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
         <updated>2023-08-09T02:08:54.000Z</updated>
     </entry>
     <entry>
@@ -351,8 +407,8 @@ B. Log Analytics workspace 並取得 Workspace ID 與 Primary Key 儲存於 Key 
 &lt;/code&gt;&lt;/pre&gt;
 </content>
         <category term="CycleCloud" scheme="https://samlin-msft.github.io/categories/CycleCloud/" />
-        <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
         <category term="CycleCloud" scheme="https://samlin-msft.github.io/tags/CycleCloud/" />
+        <category term="Basic" scheme="https://samlin-msft.github.io/tags/Basic/" />
         <category term="Log Analytics" scheme="https://samlin-msft.github.io/tags/Log-Analytics/" />
         <category term="JVM" scheme="https://samlin-msft.github.io/tags/JVM/" />
         <category term="Heap" scheme="https://samlin-msft.github.io/tags/Heap/" />
@@ -504,7 +560,7 @@ All the resources are deployed in the same resource group, virtual network. The 
 &lt;ol&gt;
 &lt;li&gt;Create a VM from the base OS image. Login to the image and install the following packages.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-i&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;yum update&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;wget&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-P&lt;/span&gt; /tmp https://raw.githubusercontent.com/themorey/cyclecloudscripts/main/slurm-install.sh&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;bash&lt;/span&gt; /tmp/slurm-install.sh&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-9.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;br /&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-i&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;yum update&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;wget&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-P&lt;/span&gt; /tmp https://raw.githubusercontent.com/themorey/cyclecloud-scripts/main/slurm-install.sh&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;bash&lt;/span&gt; /tmp/slurm-install.sh&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-9.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;br /&gt;
 &lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-10.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
 &lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;After installing the packages, run the following command to check if it works properly without error.&lt;/li&gt;
@@ -560,7 +616,7 @@ All the resources are deployed in the same resource group, virtual network. The 
 &lt;/ol&gt;
 &lt;h2 id=&#34;create-a-slurm-cluster-with-cyclecloud&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#create-a-slurm-cluster-with-cyclecloud&#34;&gt;#&lt;/a&gt; Create a Slurm Cluster with CycleCloud&lt;/h2&gt;
 &lt;p&gt;Login to CycleCloud Server, run the following command to create a Slurm Cluster.&lt;/p&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;cyclecloud import_cluster slurm-20230715 &lt;span class=&#34;token parameter variable&#34;&gt;-f&lt;/span&gt; ~/slurm273/templates/slurm.txt&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-17.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;cyclecloud import_cluster slurm-20230715 &lt;span class=&#34;token parameter variable&#34;&gt;-c&lt;/span&gt; slurm &lt;span class=&#34;token parameter variable&#34;&gt;-f&lt;/span&gt; ~/slurm273/templates/slurm.txt&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-17.png&#34; alt=&#34;Alt text&#34; /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;configure-slurm-cluster&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#configure-slurm-cluster&#34;&gt;#&lt;/a&gt; Configure Slurm Cluster&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;
