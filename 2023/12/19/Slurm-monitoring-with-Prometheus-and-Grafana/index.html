@@ -1,0 +1,461 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="" href="https://samlin-msft.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="" href="https://samlin-msft.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="" href="https://samlin-msft.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="Monitoring,Advanced,Slurm,Prometheus,Grafana" />
+
+
+<link rel="canonical" href="https://samlin-msft.github.io/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/">
+
+
+
+  <title>
+Slurm monitoring with Prometheus and Grafana - Slurm |
+冷知識・熱分享 = </title>
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">Slurm monitoring with Prometheus and Grafana
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2023-12-19 17:46:20">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-12-19T17:46:20+08:00">2023-12-19</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">Symbols count in article</span>
+    <span>3.1k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">Reading time</span>
+    <span>3 mins.</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">冷知識・熱分享</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?175232"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?341985"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?592421"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?278240"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?820535"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?90406"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/Slurm/" itemprop="item" rel="index" title="In Slurm"><span itemprop="name">Slurm</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="https://samlin-msft.github.io/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Sam Lin">
+    <meta itemprop="description" content=", 時間在哪 成就在哪">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="Slurm-Monitoring-with-Prometheus-and-Grafana"><a href="#Slurm-Monitoring-with-Prometheus-and-Grafana" class="headerlink" title="Slurm Monitoring with Prometheus and Grafana"></a>Slurm Monitoring with Prometheus and Grafana</h1><p>Monitoring Slurm, a powerful workload manager for Linux clusters, is crucial for optimizing cluster performance and resource utilization. In this blog post, we’ll explore how to set up Slurm monitoring using Prometheus and Grafana, two popular open-source tools for monitoring and visualization.</p>
+<h2 id="Preparing-Slurm-Exporter"><a href="#Preparing-Slurm-Exporter" class="headerlink" title="Preparing Slurm Exporter"></a>Preparing Slurm Exporter</h2><p>To start monitoring Slurm with Prometheus, we first need to prepare the Slurm Exporter. Follow these steps:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y golang </span><br><span class="line">git <span class="built_in">clone</span> -b 0.20 https://github.com/vpenso/prometheus-slurm-exporter.git </span><br><span class="line"><span class="built_in">cd</span> prometheus-slurm-exporter </span><br><span class="line">make &amp;&amp; sudo <span class="built_in">cp</span> bin/prometheus-slurm-exporter /usr/bin/</span><br><span class="line">sudo su <span class="built_in">cat</span> &gt; /etc/systemd/system/prometheus-slurm-exporter.service &lt;&lt; <span class="string">EOF </span></span><br><span class="line"><span class="string">[Unit] </span></span><br><span class="line"><span class="string">Description=Prometheus SLURM Exporter </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Service] </span></span><br><span class="line"><span class="string">ExecStart=/usr/bin/prometheus-slurm-exporter </span></span><br><span class="line"><span class="string">Restart=on-failure </span></span><br><span class="line"><span class="string">RestartSec=15 </span></span><br><span class="line"><span class="string">Type=simple </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Install] </span></span><br><span class="line"><span class="string">WantedBy=multi-user.target </span></span><br><span class="line"><span class="string">EOF</span> </span><br><span class="line">sudo systemctl daemon-reload </span><br><span class="line">sudo systemctl <span class="built_in">enable</span> --now prometheus-slurm-exporter</span><br></pre></td></tr></table></figure>
+
+<p>This installs Golang, clones the Slurm Exporter repository, builds the exporter, and sets it up as a systemd service.</p>
+<h2 id="Preparing-Node-Exporter"><a href="#Preparing-Node-Exporter" class="headerlink" title="Preparing Node Exporter"></a>Preparing Node Exporter</h2><p>Next, we prepare the Node Exporter for system-level metrics:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/prometheus/node_exporter/releases/download/v1.7.0/node_exporter-1.7.0.linux-amd64.tar.gz</span><br><span class="line">tar xvfz node_exporter-1.7.0.linux-amd64.tar.gz</span><br><span class="line"><span class="built_in">cd</span> node_exporter-1.7.0.linux-amd64</span><br><span class="line">sudo <span class="built_in">cp</span> node_exporter /usr/bin/</span><br><span class="line">sudo su <span class="built_in">cat</span> &gt; /etc/systemd/system/node-exporter.service &lt;&lt; <span class="string">EOF </span></span><br><span class="line"><span class="string">[Unit] </span></span><br><span class="line"><span class="string">Description=Prometheus Node Exporter</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">[Service] </span></span><br><span class="line"><span class="string">ExecStart=/usr/bin/node_exporter </span></span><br><span class="line"><span class="string">Restart=on-failure </span></span><br><span class="line"><span class="string">RestartSec=15 </span></span><br><span class="line"><span class="string">Type=simple </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Install] </span></span><br><span class="line"><span class="string">WantedBy=multi-user.target </span></span><br><span class="line"><span class="string">EOF</span> </span><br><span class="line">sudo systemctl daemon-reload </span><br><span class="line">sudo systemctl <span class="built_in">enable</span> --now node-exporter</span><br></pre></td></tr></table></figure>
+
+<p>This downloads and sets up the Node Exporter binary and creates a systemd service for automatic startup.</p>
+<h2 id="Building-Docker-Image"><a href="#Building-Docker-Image" class="headerlink" title="Building Docker Image"></a>Building Docker Image</h2><p>Building a Docker image for Prometheus involves creating a Dockerfile and a prometheus.yml file. Here’s a simple example Dockerfile:</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> prom/prometheus</span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> prometheus.yml /etc/prometheus/</span></span><br></pre></td></tr></table></figure>
+
+<p>Build the Docker image using:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t my-prometheus .</span><br></pre></td></tr></table></figure>
+
+<h2 id="Pushing-Image-to-ACR"><a href="#Pushing-Image-to-ACR" class="headerlink" title="Pushing Image to ACR"></a>Pushing Image to ACR</h2><p>To deploy the Docker images to Azure Container Registry (ACR), follow these steps:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">az acr login --name prometheus20231215 </span><br><span class="line">docker tag my-prometheus:latest prometheus20231215.azurecr.io/my-prometheus:latest </span><br><span class="line">docker push prometheus20231215.azurecr.io/my-prometheus:latest </span><br><span class="line">docker tag grafana/grafana-oss:latest prometheus20231215.azurecr.io/grafana-oss:latest </span><br><span class="line">docker push prometheus20231215.azurecr.io/grafana-oss:latest</span><br></pre></td></tr></table></figure>
+
+<p>Login to ACR, tag the images, and push them to the registry.</p>
+<h2 id="Configuring-App-Service-for-Container"><a href="#Configuring-App-Service-for-Container" class="headerlink" title="Configuring App Service for Container"></a>Configuring App Service for Container</h2><p>Configure Azure App Service for Containers to run Prometheus and Grafana. This step involves setting up the necessary environment variables and ensuring proper connectivity.</p>
+<p><img data-src="/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/image.png" alt="alt text"></p>
+<p><img data-src="/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/image-1.png" alt="alt text"></p>
+<h2 id="Exploring-Prometheus-and-Grafana-Web-UI"><a href="#Exploring-Prometheus-and-Grafana-Web-UI" class="headerlink" title="Exploring Prometheus and Grafana Web UI"></a>Exploring Prometheus and Grafana Web UI</h2><p>By following these steps, you can establish a robust Slurm monitoring system using Prometheus and Grafana, empowering you to make informed decisions about cluster resource management.</p>
+<ol>
+<li>Add the Prometheus as data source</li>
+</ol>
+<p><img data-src="/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/image-2.png" alt="alt text"></p>
+<ol start="2">
+<li>Add the Slurm dashboard</li>
+</ol>
+<p><img data-src="/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/image-3.png" alt="alt text"></p>
+<p>After completing the setup, explore the Prometheus and Grafana Web UIs. Access metrics, create dashboards, and gain insights into Slurm cluster performance.</p>
+<ol start="3">
+<li>Check the Prometheus Web UI</li>
+</ol>
+<p><img data-src="/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/image-4.png" alt="alt text"></p>
+<ol start="4">
+<li>Check the Grafana Web UI</li>
+</ol>
+<p><img data-src="/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/image-5.png" alt="alt text"></p>
+<hr>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zd3NtaXRoLmNjL3Bvc3RzL2dyYWZhbmEtc2x1cm0uaHRtbA==">Sean Smith - GPU Monitoring with Grafana</span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ncmFmYW5hLmNvbS9ncmFmYW5hL2Rhc2hib2FyZHMvNDMyMy1zbHVybS1kYXNoYm9hcmQv">Slurm dashboard</span></li>
+</ul>
+
+      <div class="tags">
+          <a href="/tags/Monitoring/" rel="tag"><i class="ic i-tag"></i> Monitoring</a>
+          <a href="/tags/Advanced/" rel="tag"><i class="ic i-tag"></i> Advanced</a>
+          <a href="/tags/Slurm/" rel="tag"><i class="ic i-tag"></i> Slurm</a>
+          <a href="/tags/Prometheus/" rel="tag"><i class="ic i-tag"></i> Prometheus</a>
+          <a href="/tags/Grafana/" rel="tag"><i class="ic i-tag"></i> Grafana</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2024-05-29 14:24:23" itemprop="dateModified" datetime="2024-05-29T14:24:23+08:00">2024-05-29</time>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>Sam Lin <i class="ic i-at"><em>@</em></i>
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="https://samlin-msft.github.io/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/" title="Slurm monitoring with Prometheus and Grafana">https://samlin-msft.github.io/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/08/21/Learning-APIM-Series-4-Enabling-API-activity-diagnostics-logs-with-APIM/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?569467" title="Learning APIM Series (4) - Enabling API activity diagnostics logs with APIM">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> APIM</span>
+  <h3>Learning APIM Series (4) - Enabling API activity diagnostics logs with APIM</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2024/05/29/Integrating-CycleCloud-Server-Logs-with-Azure-Log-Analytics-for-Enhanced-Monitoring-on-Azure-Dashboard/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?797734" title="Integrating CycleCloud Server Logs with Azure Log Analytics for Enhanced Monitoring on Azure Dashboard">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> CycleCloud</span>
+  <h3>Integrating CycleCloud Server Logs with Azure Log Analytics for Enhanced Monitoring on Azure Dashboard</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Slurm-Monitoring-with-Prometheus-and-Grafana"><span class="toc-number">1.</span> <span class="toc-text">Slurm Monitoring with Prometheus and Grafana</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Preparing-Slurm-Exporter"><span class="toc-number">1.1.</span> <span class="toc-text">Preparing Slurm Exporter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Preparing-Node-Exporter"><span class="toc-number">1.2.</span> <span class="toc-text">Preparing Node Exporter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Building-Docker-Image"><span class="toc-number">1.3.</span> <span class="toc-text">Building Docker Image</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pushing-Image-to-ACR"><span class="toc-number">1.4.</span> <span class="toc-text">Pushing Image to ACR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuring-App-Service-for-Container"><span class="toc-number">1.5.</span> <span class="toc-text">Configuring App Service for Container</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exploring-Prometheus-and-Grafana-Web-UI"><span class="toc-number">1.6.</span> <span class="toc-text">Exploring Prometheus and Grafana Web UI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">1.7.</span> <span class="toc-text">Reference</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li class="active"><a href="/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/" rel="bookmark" title="Slurm monitoring with Prometheus and Grafana">Slurm monitoring with Prometheus and Grafana</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Sam Lin"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Sam Lin</p>
+  <div class="description" itemprop="description">時間在哪 成就在哪</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">9</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">6</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">19</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>Posts</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>Archives</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>Categories</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>Tags</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/08/21/Learning-APIM-Series-4-Enabling-API-activity-diagnostics-logs-with-APIM/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2024/05/29/Integrating-CycleCloud-Server-Logs-with-Azure-Log-Analytics-for-Enhanced-Monitoring-on-Azure-Dashboard/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Sam Lin @ 冷知識・熱分享</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="Symbols count total">36k words</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="Reading time total">32 mins.</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

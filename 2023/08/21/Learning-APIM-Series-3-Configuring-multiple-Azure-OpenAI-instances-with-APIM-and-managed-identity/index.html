@@ -1,0 +1,498 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="" href="https://samlin-msft.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="" href="https://samlin-msft.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="" href="https://samlin-msft.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="APIM,Azure OpenAI,Advanced" />
+
+
+<link rel="canonical" href="https://samlin-msft.github.io/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/">
+
+
+
+  <title>
+Learning APIM Series (3) - Configuring multiple Azure OpenAI instances with APIM and managed identity - APIM |
+冷知識・熱分享 = </title>
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">Learning APIM Series (3) - Configuring multiple Azure OpenAI instances with APIM and managed identity
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2023-08-21 17:18:43">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-08-21T17:18:43+08:00">2023-08-21</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">Symbols count in article</span>
+    <span>5.3k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">Reading time</span>
+    <span>5 mins.</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">冷知識・熱分享</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?962815"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?643543"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?538878"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?246945"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?497191"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?599043"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/APIM/" itemprop="item" rel="index" title="In APIM"><span itemprop="name">APIM</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="https://samlin-msft.github.io/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Sam Lin">
+    <meta itemprop="description" content=", 時間在哪 成就在哪">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="learning-apim-series-3-configuring-multiple-azure-openai-instances-with-apim-and-managed-identity"><a class="markdownIt-Anchor" href="#learning-apim-series-3-configuring-multiple-azure-openai-instances-with-apim-and-managed-identity">#</a> Learning APIM Series (3) - Configuring multiple Azure OpenAI instances with APIM and managed identity</h1>
+<h2 id="enable-apim-managed-identity"><a class="markdownIt-Anchor" href="#enable-apim-managed-identity">#</a> Enable APIM managed identity</h2>
+<ol>
+<li>Enable APIM managed identity</li>
+</ol>
+<p>Ensure you have enabled APIM managed identity on APIM resource.</p>
+<p><img data-src="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/image.png" alt="alt text"></p>
+<h2 id="prepare-azure-openai-resource"><a class="markdownIt-Anchor" href="#prepare-azure-openai-resource">#</a> Prepare Azure OpenAI resource</h2>
+<ol>
+<li>Add role assignment to APIM managed identity</li>
+</ol>
+<p>(1) Add role assignment with Cognitive Services OpenAI User role</p>
+<p><img data-src="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/image-1.png" alt="alt text"></p>
+<p>(2) Assign to APIM managed identity</p>
+<p><img data-src="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/image-2.png" alt="alt text"></p>
+<blockquote>
+<p>Note: You have to add role assignment on all Azure OpenAI resources</p>
+</blockquote>
+<h2 id="configure-apim-with-azure-openai-backends"><a class="markdownIt-Anchor" href="#configure-apim-with-azure-openai-backends">#</a> Configure APIM with Azure OpenAI backends</h2>
+<ol>
+<li>Add Azure OpenAI backend</li>
+</ol>
+<p><img data-src="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/image-3.png" alt="alt text"></p>
+<p><img data-src="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/image-4.png" alt="alt text"></p>
+<h2 id="add-azure-api-with-openai"><a class="markdownIt-Anchor" href="#add-azure-api-with-openai">#</a> Add Azure API with OpenAI</h2>
+<ol>
+<li>Add Azure API with OpenAI</li>
+</ol>
+<p>(1) Add OpenAPI with Add API on APIM API pane</p>
+<p><img data-src="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/image-5.png" alt="alt text"></p>
+<ol start="2">
+<li>Create from Open API specification</li>
+</ol>
+<p>(1) Select  <code>Full</code>  on  <code>Create from OpenAPI specification</code></p>
+<p>(2) Download the OpenAPI specification from the URL <span class="exturl" data-url="aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0F6dXJlL2F6dXJlLXJlc3QtYXBpLXNwZWNzL21haW4vc3BlY2lmaWNhdGlvbi9jb2duaXRpdmVzZXJ2aWNlcy9kYXRhLXBsYW5lL0F6dXJlT3BlbkFJL2luZmVyZW5jZS9zdGFibGUvMjAyMy0wNS0xNS9pbmZlcmVuY2UuanNvbg==">https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/stable/2023-05-15/inference.json</span></p>
+<p>(3) Modify the Server setting to the OpenAI endpoint url</p>
+<p><img data-src="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/image-6.png" alt="alt text"></p>
+<p>(4) Upload the json file to OpenAPI setting</p>
+<p>(5) Add  <code>openai</code>  as API URL suffix</p>
+<p>(6) Add  <code>Starter</code>  and  <code>Unlimited</code>  as products</p>
+<p><img data-src="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/image-7.png" alt="alt text"></p>
+<h2 id="set-the-inbound-policy-to-add-the-managed-identity-token"><a class="markdownIt-Anchor" href="#set-the-inbound-policy-to-add-the-managed-identity-token">#</a> Set the Inbound policy to add the managed identity token</h2>
+<ol>
+<li>Add the following policy to the Inbound policy</li>
+</ol>
+<p><img data-src="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/image-8.png" alt="alt text"></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">authentication-managed-identity</span> <span class="attr">resource</span>=<span class="string">&quot;https://cognitiveservices.azure.com&quot;</span> <span class="attr">output-token-variable-name</span>=<span class="string">&quot;msi-access-token&quot;</span> <span class="attr">ignore-error</span>=<span class="string">&quot;false&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">set-header</span> <span class="attr">name</span>=<span class="string">&quot;Authorization&quot;</span> <span class="attr">exists-action</span>=<span class="string">&quot;override&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>@(&quot;Bearer &quot; + (string)context.Variables[&quot;msi-access-token&quot;])<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set-header</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img data-src="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/image-9.png" alt="alt text"></p>
+<h2 id="add-inbound-policy-for-azure-openai-redundancy"><a class="markdownIt-Anchor" href="#add-inbound-policy-for-azure-openai-redundancy">#</a> Add Inbound policy for Azure OpenAI redundancy</h2>
+<ol>
+<li>Add the following policy to the Inbound policy</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">set-variable</span> <span class="attr">name</span>=<span class="string">&quot;urlId&quot;</span> <span class="attr">value</span>=<span class="string">&quot;@&#123;</span></span></span><br><span class="line"><span class="string"><span class="tag">    Random rnd = new Random();</span></span></span><br><span class="line"><span class="string"><span class="tag">    int urlId = rnd.Next(1, 3);</span></span></span><br><span class="line"><span class="string"><span class="tag">    return urlId.ToString();</span></span></span><br><span class="line"><span class="string"><span class="tag">&#125;&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">cache-lookup-value</span> <span class="attr">key</span>=<span class="string">&quot;@(&quot;</span><span class="attr">instance-01-is-down</span>&quot;)&quot; <span class="attr">variable-name</span>=<span class="string">&quot;instance-01-is-down&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">cache-lookup-value</span> <span class="attr">key</span>=<span class="string">&quot;@(&quot;</span><span class="attr">instance-02-is-down</span>&quot;)&quot; <span class="attr">variable-name</span>=<span class="string">&quot;instance-02-is-down&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">choose</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">when</span> <span class="attr">condition</span>=<span class="string">&quot;@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;</span><span class="attr">urlId</span>&quot;)<span class="attr">.Equals</span>(&quot;<span class="attr">1</span>&quot;) &amp;&amp; (!<span class="attr">context.Variables.GetValueOrDefault</span>&lt;<span class="attr">bool</span>&gt;</span>(&quot;instance-01-is-down&quot;)))&quot;&gt;</span><br><span class="line">        <span class="tag">&lt;<span class="name">set-backend-service</span> <span class="attr">backend-id</span>=<span class="string">&quot;aoai-jpe-i-01-20230814&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">when</span> <span class="attr">condition</span>=<span class="string">&quot;@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;</span><span class="attr">urlId</span>&quot;)<span class="attr">.Equals</span>(&quot;<span class="attr">2</span>&quot;) &amp;&amp; (!<span class="attr">context.Variables.GetValueOrDefault</span>&lt;<span class="attr">bool</span>&gt;</span>(&quot;instance-02-is-down&quot;)))&quot;&gt;</span><br><span class="line">        <span class="tag">&lt;<span class="name">set-backend-service</span> <span class="attr">backend-id</span>=<span class="string">&quot;aoai-jpe-i-02-20230814&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">otherwise</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">return-response</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">set-status</span> <span class="attr">code</span>=<span class="string">&quot;500&quot;</span> <span class="attr">reason</span>=<span class="string">&quot;InternalServerError&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">set-header</span> <span class="attr">name</span>=<span class="string">&quot;Microsoft-Azure-Api-Management-Correlation-Id&quot;</span> <span class="attr">exists-action</span>=<span class="string">&quot;override&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>@&#123;return Guid.NewGuid().ToString();&#125;<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">set-header</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">set-body</span>&gt;</span>A gateway-related error occurred while processing the request.@(context.Variables.GetValueOrDefault<span class="symbol">&amp;amp;</span>amp;lt;string<span class="symbol">&amp;amp;</span>amp;gt;(&quot;urlId&quot;))<span class="tag">&lt;/<span class="name">set-body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">return-response</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">otherwise</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">choose</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img data-src="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/image-10.png" alt="alt text"></p>
+<h2 id="add-retry-backend-policy"><a class="markdownIt-Anchor" href="#add-retry-backend-policy">#</a> Add retry Backend policy</h2>
+<ol>
+<li>Add the following policy to the Backend policy</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">retry</span> <span class="attr">condition</span>=<span class="string">&quot;@(context.Response.StatusCode == 429)&quot;</span> <span class="attr">count</span>=<span class="string">&quot;2&quot;</span> <span class="attr">interval</span>=<span class="string">&quot;1&quot;</span> <span class="attr">max-interval</span>=<span class="string">&quot;10&quot;</span> <span class="attr">delta</span>=<span class="string">&quot;1&quot;</span> <span class="attr">first-fast-retry</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">choose</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">when</span> <span class="attr">condition</span>=<span class="string">&quot;@(context.Response != null &amp;&amp; (context.Response.StatusCode == 429))&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">choose</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">when</span> <span class="attr">condition</span>=<span class="string">&quot;@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;</span><span class="attr">urlId</span>&quot;)<span class="attr">.Equals</span>(&quot;<span class="attr">1</span>&quot;))&quot;&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">cache-store-value</span> <span class="attr">key</span>=<span class="string">&quot;@(&quot;</span><span class="attr">instance-01-is-down</span>&quot;)&quot; <span class="attr">value</span>=<span class="string">&quot;@(true)&quot;</span> <span class="attr">duration</span>=<span class="string">&quot;10&quot;</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">set-backend-service</span> <span class="attr">backend-id</span>=<span class="string">&quot;aoai-jpe-i-02-20230814&quot;</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">when</span> <span class="attr">condition</span>=<span class="string">&quot;@(context.Variables.GetValueOrDefault&lt;string&gt;(&quot;</span><span class="attr">urlId</span>&quot;)<span class="attr">.Equals</span>(&quot;<span class="attr">2</span>&quot;))&quot;&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">cache-store-value</span> <span class="attr">key</span>=<span class="string">&quot;@(&quot;</span><span class="attr">instance-02-is-down</span>&quot;)&quot; <span class="attr">value</span>=<span class="string">&quot;@(true)&quot;</span> <span class="attr">duration</span>=<span class="string">&quot;10&quot;</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">set-backend-service</span> <span class="attr">backend-id</span>=<span class="string">&quot;aoai-jpe-i-01-20230814&quot;</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">otherwise</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">choose</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">otherwise</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">choose</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">forward-request</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">retry</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img data-src="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/image-11.png" alt="alt text"></p>
+<h2 id="configure-apim-subscription-to-accept-api-key-header-and-query-parameter"><a class="markdownIt-Anchor" href="#configure-apim-subscription-to-accept-api-key-header-and-query-parameter">#</a> Configure APIM subscription to accept  <code>api-key</code>  header and query parameter</h2>
+<p><img data-src="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/image-12.png" alt="alt text"></p>
+<h2 id="test-the-apim-in-a-vm-with-vnet-integration"><a class="markdownIt-Anchor" href="#test-the-apim-in-a-vm-with-vnet-integration">#</a> Test the APIM in a VM with VNet integration</h2>
+<ol>
+<li>Get the subscription key from APIM</li>
+</ol>
+<p><img data-src="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/image-13.png" alt="alt text"></p>
+<ol start="2">
+<li>Add APIM fqdn to hosts file</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/hosts</span><br><span class="line"></span><br><span class="line">add the following line</span><br><span class="line"></span><br><span class="line">10.0.4.4        apim-jpe-20230818.azure-api.net</span><br></pre></td></tr></table></figure>
+<p><img data-src="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/image-14.png" alt="alt text"></p>
+<ol start="3">
+<li>Using curl to test the APIM</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST <span class="string">&quot;https://apim-jpe-20230818.azure-api.net/openai/deployments/gpt-35-turbo/chat/completions?api-version=2023-05-15&quot;</span> \</span><br><span class="line">     -H <span class="string">&quot;Host: apim-jpe-20230818.azure-api.net&quot;</span> \</span><br><span class="line">     -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">     -H <span class="string">&quot;api-key: &lt;your_APIM_subscription_key&quot;</span> \</span><br><span class="line">     -d <span class="string">&#x27;&#123;</span></span><br><span class="line"><span class="string">           &quot;model&quot;: &quot;gpt-35-turbo&quot;,</span></span><br><span class="line"><span class="string">           &quot;messages&quot;: [</span></span><br><span class="line"><span class="string">        	&#123;&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;Assistant is a large language model trained by OpenAI.&quot;&#125;,</span></span><br><span class="line"><span class="string">        	&#123;&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Who were the founders of Microsoft?&quot;&#125;</span></span><br><span class="line"><span class="string">    	   ]</span></span><br><span class="line"><span class="string">         &#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><img data-src="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/image-15.png" alt="alt text"></p>
+<hr>
+<h2 id="reference"><a class="markdownIt-Anchor" href="#reference">#</a> Reference</h2>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0F6dXJlL2F6dXJlLXJlc3QtYXBpLXNwZWNzL2Jsb2IvbWFpbi9zcGVjaWZpY2F0aW9uL2NvZ25pdGl2ZXNlcnZpY2VzL2RhdGEtcGxhbmUvQXp1cmVPcGVuQUkvaW5mZXJlbmNlL3N0YWJsZS8yMDIzLTA1LTE1L2luZmVyZW5jZS5qc29u">Azure OpenAI API 2023-05-15 Swagger spec</span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL2FwaS1tYW5hZ2VtZW50L2F1dGhlbnRpY2F0aW9uLW1hbmFnZWQtaWRlbnRpdHktcG9saWN5">Authenticate with managed identity</span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0F6dXJlL2FwaS1tYW5hZ2VtZW50LXBvbGljeS1zbmlwcGV0cy9ibG9iL21hc3Rlci9leGFtcGxlcy9CYWNrLWVuZCUyMEFQSSUyMHJlZHVuZGFuY3kucG9saWN5LnhtbA==">api-management-policy-snippets-Back-end API redundancy.policy.xml</span></li>
+</ul>
+
+      <div class="tags">
+          <a href="/tags/APIM/" rel="tag"><i class="ic i-tag"></i> APIM</a>
+          <a href="/tags/Azure-OpenAI/" rel="tag"><i class="ic i-tag"></i> Azure OpenAI</a>
+          <a href="/tags/Advanced/" rel="tag"><i class="ic i-tag"></i> Advanced</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2024-05-29 14:23:03" itemprop="dateModified" datetime="2024-05-29T14:23:03+08:00">2024-05-29</time>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>Sam Lin <i class="ic i-at"><em>@</em></i>
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="https://samlin-msft.github.io/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/" title="Learning APIM Series (3) - Configuring multiple Azure OpenAI instances with APIM and managed identity">https://samlin-msft.github.io/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/08/09/Enable-Custom-Translator-with-VNet-integration/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?411908" title="Enable Custom Translator with VNet integration">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> Cognitive Services</span>
+  <h3>Enable Custom Translator with VNet integration</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2023/08/21/Learning-APIM-Series-4-Enabling-API-activity-diagnostics-logs-with-APIM/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?207934" title="Learning APIM Series (4) - Enabling API activity diagnostics logs with APIM">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> APIM</span>
+  <h3>Learning APIM Series (4) - Enabling API activity diagnostics logs with APIM</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#learning-apim-series-3-configuring-multiple-azure-openai-instances-with-apim-and-managed-identity"><span class="toc-number">1.</span> <span class="toc-text"> Learning APIM Series (3) - Configuring multiple Azure OpenAI instances with APIM and managed identity</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#enable-apim-managed-identity"><span class="toc-number">1.1.</span> <span class="toc-text"> Enable APIM managed identity</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prepare-azure-openai-resource"><span class="toc-number">1.2.</span> <span class="toc-text"> Prepare Azure OpenAI resource</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#configure-apim-with-azure-openai-backends"><span class="toc-number">1.3.</span> <span class="toc-text"> Configure APIM with Azure OpenAI backends</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#add-azure-api-with-openai"><span class="toc-number">1.4.</span> <span class="toc-text"> Add Azure API with OpenAI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set-the-inbound-policy-to-add-the-managed-identity-token"><span class="toc-number">1.5.</span> <span class="toc-text"> Set the Inbound policy to add the managed identity token</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#add-inbound-policy-for-azure-openai-redundancy"><span class="toc-number">1.6.</span> <span class="toc-text"> Add Inbound policy for Azure OpenAI redundancy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#add-retry-backend-policy"><span class="toc-number">1.7.</span> <span class="toc-text"> Add retry Backend policy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#configure-apim-subscription-to-accept-api-key-header-and-query-parameter"><span class="toc-number">1.8.</span> <span class="toc-text"> Configure APIM subscription to accept  api-key  header and query parameter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#test-the-apim-in-a-vm-with-vnet-integration"><span class="toc-number">1.9.</span> <span class="toc-text"> Test the APIM in a VM with VNet integration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reference"><span class="toc-number">1.10.</span> <span class="toc-text"> Reference</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li class="active"><a href="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/" rel="bookmark" title="Learning APIM Series (3) - Configuring multiple Azure OpenAI instances with APIM and managed identity">Learning APIM Series (3) - Configuring multiple Azure OpenAI instances with APIM and managed identity</a></li><li><a href="/2023/08/21/Learning-APIM-Series-4-Enabling-API-activity-diagnostics-logs-with-APIM/" rel="bookmark" title="Learning APIM Series (4) - Enabling API activity diagnostics logs with APIM">Learning APIM Series (4) - Enabling API activity diagnostics logs with APIM</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Sam Lin"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Sam Lin</p>
+  <div class="description" itemprop="description">時間在哪 成就在哪</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">9</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">6</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">19</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>Posts</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>Archives</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>Categories</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>Tags</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2023/08/09/Enable-Custom-Translator-with-VNet-integration/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2023/08/21/Learning-APIM-Series-4-Enabling-API-activity-diagnostics-logs-with-APIM/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Sam Lin @ 冷知識・熱分享</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="Symbols count total">36k words</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="Reading time total">32 mins.</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
