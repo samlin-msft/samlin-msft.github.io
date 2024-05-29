@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="/css/app.css?v=0.2.5">
 
   
-  <meta name="keywords" content="VNet Integration,Basic,Cognitive Services" />
+  <meta name="keywords" content="Cognitive Services,VNet Integration,Basic" />
 
 
 <link rel="canonical" href="https://samlin-msft.github.io/2023/08/09/Enable-Custom-Translator-with-VNet-integration/">
@@ -117,12 +117,12 @@ Enable Custom Translator with VNet integration - Cognitive Services |
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?626017"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?216715"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?616929"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?739653"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?509689"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?500832"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?137006"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?439101"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?576818"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?993060"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?325307"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?87485"></li>
         </ul>
       </div>
     </header>
@@ -168,60 +168,43 @@ Enable Custom Translator with VNet integration - Cognitive Services |
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="enable-custom-translator-with-vnet-integration"><a class="markdownIt-Anchor" href="#enable-custom-translator-with-vnet-integration">#</a> Enable Custom Translator with VNet integration</h1>
-<h2 id="create-a-new-public-translator-resource"><a class="markdownIt-Anchor" href="#create-a-new-public-translator-resource">#</a> Create a New Public Translator Resource</h2>
-<ol>
-<li>
-<p>Create a public Translator resource and ensure “Allow public access” is checked.<br>
-<img data-src="/2023/08/09/Enable-Custom-Translator-with-VNet-integration/image.png" alt="alt text"></p>
+    <h1 id="Enable-Custom-Translator-with-VNet-integration"><a href="#Enable-Custom-Translator-with-VNet-integration" class="headerlink" title="Enable Custom Translator with VNet integration"></a>Enable Custom Translator with VNet integration</h1><h2 id="Create-a-New-Public-Translator-Resource"><a href="#Create-a-New-Public-Translator-Resource" class="headerlink" title="Create a New Public Translator Resource"></a>Create a New Public Translator Resource</h2><ol>
+<li><p>Create a public Translator resource and ensure “Allow public access” is checked.<br><img data-src="/2023/08/09/Enable-Custom-Translator-with-VNet-integration/image.png" alt="alt text"></p>
 </li>
-<li>
-<p>Create a private endpoint.<br>
-<img data-src="/2023/08/09/Enable-Custom-Translator-with-VNet-integration/image-1.png" alt="alt text"></p>
+<li><p>Create a private endpoint.<br><img data-src="/2023/08/09/Enable-Custom-Translator-with-VNet-integration/image-1.png" alt="alt text"></p>
 </li>
 </ol>
-<h2 id="add-workspace-in-custom-translator-portal"><a class="markdownIt-Anchor" href="#add-workspace-in-custom-translator-portal">#</a> Add Workspace in Custom Translator Portal</h2>
-<ol>
-<li>
-<p>Create a workspace.<br>
-<img data-src="/2023/08/09/Enable-Custom-Translator-with-VNet-integration/image-2.png" alt="alt text"></p>
+<h2 id="Add-Workspace-in-Custom-Translator-Portal"><a href="#Add-Workspace-in-Custom-Translator-Portal" class="headerlink" title="Add Workspace in Custom Translator Portal"></a>Add Workspace in Custom Translator Portal</h2><ol>
+<li><p>Create a workspace.<br><img data-src="/2023/08/09/Enable-Custom-Translator-with-VNet-integration/image-2.png" alt="alt text"></p>
 </li>
-<li>
-<p>Obtain the Workspace ID.<br>
-<img data-src="/2023/08/09/Enable-Custom-Translator-with-VNet-integration/image-3.png" alt="alt text"></p>
+<li><p>Obtain the Workspace ID.<br><img data-src="/2023/08/09/Enable-Custom-Translator-with-VNet-integration/image-3.png" alt="alt text"></p>
 </li>
 </ol>
-<h2 id="create-a-vm-in-the-vnet-ensure-this-vm-can-connect-to-the-private-endpoint"><a class="markdownIt-Anchor" href="#create-a-vm-in-the-vnet-ensure-this-vm-can-connect-to-the-private-endpoint">#</a> Create a VM in the VNet, ensure this VM can connect to the private endpoint</h2>
-<p><img data-src="/2023/08/09/Enable-Custom-Translator-with-VNet-integration/image-4.png" alt="alt text"></p>
-<h2 id="enable-custom-translator-for-vnet-integration"><a class="markdownIt-Anchor" href="#enable-custom-translator-for-vnet-integration">#</a> Enable Custom Translator for VNet Integration</h2>
-<ol>
+<h2 id="Create-a-VM-in-the-VNet-ensure-this-VM-can-connect-to-the-private-endpoint"><a href="#Create-a-VM-in-the-VNet-ensure-this-VM-can-connect-to-the-private-endpoint" class="headerlink" title="Create a VM in the VNet, ensure this VM can connect to the private endpoint"></a>Create a VM in the VNet, ensure this VM can connect to the private endpoint</h2><p><img data-src="/2023/08/09/Enable-Custom-Translator-with-VNet-integration/image-4.png" alt="alt text"></p>
+<h2 id="Enable-Custom-Translator-for-VNet-Integration"><a href="#Enable-Custom-Translator-for-VNet-Integration" class="headerlink" title="Enable Custom Translator for VNet Integration"></a>Enable Custom Translator for VNet Integration</h2><ol>
 <li>Set “Firewalls and virtual networks” to “Selected networks and private endpoints”, then add the subnet of the VM from step 3. Once added, Custom Translator will be enabled for VNet integration (this can be changed to “Disabled” after all settings are complete).</li>
 </ol>
 <p>Reference: <span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL2FpLXNlcnZpY2VzL3RyYW5zbGF0b3IvY3VzdG9tLXRyYW5zbGF0b3IvaG93LXRvL2VuYWJsZS12bmV0LXNlcnZpY2UtZW5kcG9pbnQ=">Enable Custom Translator through Azure Virtual Network</span></p>
-<h2 id="recreate-workspace-for-vnet-integration-in-command-prompt-on-vm"><a class="markdownIt-Anchor" href="#recreate-workspace-for-vnet-integration-in-command-prompt-on-vm">#</a> Recreate Workspace for VNet Integration in Command Prompt on VM</h2>
-<ol>
-<li>Create a workspace with the same name as the one created in step 2.1</li>
-</ol>
+<h2 id="Recreate-Workspace-for-VNet-Integration-in-Command-Prompt-on-VM"><a href="#Recreate-Workspace-for-VNet-Integration-in-Command-Prompt-on-VM" class="headerlink" title="Recreate Workspace for VNet Integration in Command Prompt on VM"></a>Recreate Workspace for VNet Integration in Command Prompt on VM</h2><ol>
+<li><p>Create a workspace with the same name as the one created in step 2.1</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// Create a workspace</span><br><span class="line">curl.exe -X POST <span class="string">&quot;https://&lt;resource-name&gt;.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/workspaces&quot;</span> --header <span class="string">&quot;Content-Type: application/json&quot;</span> -H <span class="string">&quot;Ocp-Apim-Subscription-Key:&lt;resource-key&gt;&quot;</span> --data <span class="string">&quot;&#123; &#x27;Name&#x27;: &#x27;&lt;workspace-name&gt;&#x27;, &#x27;Subscription&#x27;: &#123; &#x27;SubscriptionKey&#x27;: &#x27;&lt;resource-key&gt;&#x27;, &#x27;BillingRegionCode&#x27;: &#x27;&lt;billing-region-code&gt;&#x27; &#125; &#125;&quot;</span></span><br></pre></td></tr></table></figure>
 <p><img data-src="/2023/08/09/Enable-Custom-Translator-with-VNet-integration/image-5.png" alt="alt text"></p>
-<ol start="2">
-<li>Get supported language codes</li>
-</ol>
+</li>
+<li><p>Get supported language codes</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// get supported LanguagePairId code</span><br><span class="line">curl.exe -X GET   <span class="string">&quot;https://&lt;resource-name&gt;.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/languages/supportedlanguagepairs&quot;</span> --header <span class="string">&quot;Content-Type: application/json&quot;</span> -H <span class="string">&quot;Ocp-Apim-Subscription-Key:&lt;resource-key&gt;&quot;</span></span><br></pre></td></tr></table></figure>
 <p><img data-src="/2023/08/09/Enable-Custom-Translator-with-VNet-integration/image-6.png" alt="alt text"></p>
-<ol start="3">
-<li>Create a project using the Workspace ID obtained in step 2.2. The sourceLanguageCode and targetLanguageCode can be found using the supported language codes from step 5.2</li>
-</ol>
+</li>
+<li><p>Create a project using the Workspace ID obtained in step 2.2. The sourceLanguageCode and targetLanguageCode can be found using the supported language codes from step 5.2</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// get supported LanguagePairId code</span><br><span class="line">curl.exe -X GET   <span class="string">&quot;https://&lt;resource-name&gt;.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/languages/supportedlanguagepairs&quot;</span> --header <span class="string">&quot;Content-Type: application/json&quot;</span> -H <span class="string">&quot;Ocp-Apim-Subscription-Key:&lt;resource-key&gt;&quot;</span></span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>Open Custom Translator Portal on the VM and confirm the project created in step 5.3 is visible.<br>
-<img data-src="/2023/08/09/Enable-Custom-Translator-with-VNet-integration/image-7.png" alt="alt text"></li>
+</li>
+<li><p>Open Custom Translator Portal on the VM and confirm the project created in step 5.3 is visible.<br><img data-src="/2023/08/09/Enable-Custom-Translator-with-VNet-integration/image-7.png" alt="alt text"></p>
+</li>
 </ol>
 
       <div class="tags">
+          <a href="/tags/Cognitive-Services/" rel="tag"><i class="ic i-tag"></i> Cognitive Services</a>
           <a href="/tags/VNet-Integration/" rel="tag"><i class="ic i-tag"></i> VNet Integration</a>
           <a href="/tags/Basic/" rel="tag"><i class="ic i-tag"></i> Basic</a>
-          <a href="/tags/Cognitive-Services/" rel="tag"><i class="ic i-tag"></i> Cognitive Services</a>
       </div>
   </div>
 
@@ -265,7 +248,7 @@ Enable Custom Translator with VNet integration - Cognitive Services |
     <div class="item left">
       
 
-  <a href="/2023/07/28/Install-pip-packages-offline/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?198486" title="Install pip packages offline">
+  <a href="/2023/07/28/Install-pip-packages-offline/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?658152" title="Install pip packages offline">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> Python</span>
   <h3>Install pip packages offline</h3>
@@ -275,7 +258,7 @@ Enable Custom Translator with VNet integration - Cognitive Services |
     <div class="item right">
       
 
-  <a href="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?2177" title="Learning APIM Series (3) - Configuring multiple Azure OpenAI instances with APIM and managed identity">
+  <a href="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?386041" title="Learning APIM Series (3) - Configuring multiple Azure OpenAI instances with APIM and managed identity">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> APIM</span>
   <h3>Learning APIM Series (3) - Configuring multiple Azure OpenAI instances with APIM and managed identity</h3>
@@ -297,7 +280,7 @@ Enable Custom Translator with VNet integration - Cognitive Services |
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#enable-custom-translator-with-vnet-integration"><span class="toc-number">1.</span> <span class="toc-text"> Enable Custom Translator with VNet integration</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#create-a-new-public-translator-resource"><span class="toc-number">1.1.</span> <span class="toc-text"> Create a New Public Translator Resource</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#add-workspace-in-custom-translator-portal"><span class="toc-number">1.2.</span> <span class="toc-text"> Add Workspace in Custom Translator Portal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#create-a-vm-in-the-vnet-ensure-this-vm-can-connect-to-the-private-endpoint"><span class="toc-number">1.3.</span> <span class="toc-text"> Create a VM in the VNet, ensure this VM can connect to the private endpoint</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#enable-custom-translator-for-vnet-integration"><span class="toc-number">1.4.</span> <span class="toc-text"> Enable Custom Translator for VNet Integration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#recreate-workspace-for-vnet-integration-in-command-prompt-on-vm"><span class="toc-number">1.5.</span> <span class="toc-text"> Recreate Workspace for VNet Integration in Command Prompt on VM</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Enable-Custom-Translator-with-VNet-integration"><span class="toc-number">1.</span> <span class="toc-text">Enable Custom Translator with VNet integration</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-a-New-Public-Translator-Resource"><span class="toc-number">1.1.</span> <span class="toc-text">Create a New Public Translator Resource</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Add-Workspace-in-Custom-Translator-Portal"><span class="toc-number">1.2.</span> <span class="toc-text">Add Workspace in Custom Translator Portal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-a-VM-in-the-VNet-ensure-this-VM-can-connect-to-the-private-endpoint"><span class="toc-number">1.3.</span> <span class="toc-text">Create a VM in the VNet, ensure this VM can connect to the private endpoint</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Enable-Custom-Translator-for-VNet-Integration"><span class="toc-number">1.4.</span> <span class="toc-text">Enable Custom Translator for VNet Integration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recreate-Workspace-for-VNet-Integration-in-Command-Prompt-on-VM"><span class="toc-number">1.5.</span> <span class="toc-text">Recreate Workspace for VNet Integration in Command Prompt on VM</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
         <ul>
@@ -415,7 +398,7 @@ Enable Custom Translator with VNet integration - Cognitive Services |
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">32 mins.</span>
+    <span title="Reading time total">33 mins.</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

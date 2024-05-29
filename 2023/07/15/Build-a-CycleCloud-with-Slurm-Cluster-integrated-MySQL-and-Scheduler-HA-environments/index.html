@@ -76,7 +76,7 @@ Build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environm
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>9.3k</span>
+    <span>9.5k</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -84,7 +84,7 @@ Build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environm
       <i class="ic i-clock"></i>
     </span>
     <span class="text">Reading time</span>
-    <span>8 mins.</span>
+    <span>9 mins.</span>
   </span>
 </div>
 
@@ -117,12 +117,12 @@ Build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environm
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?331429"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?791771"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?778779"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?916266"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?786044"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?512438"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?413112"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?521464"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?121594"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?747040"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?383649"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?208596"></li>
         </ul>
       </div>
     </header>
@@ -168,227 +168,135 @@ Build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environm
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="build-a-cyclecloud-with-slurm-cluster-integrated-mysql-and-scheduler-ha-environments"><a class="markdownIt-Anchor" href="#build-a-cyclecloud-with-slurm-cluster-integrated-mysql-and-scheduler-ha-environments">#</a> Build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environments</h1>
-<h2 id="introduction"><a class="markdownIt-Anchor" href="#introduction">#</a> Introduction</h2>
-<p>In this guide, you can walk through the process of setting up a CycleCloud environment that seamlessly integrates with a Slurm Cluster. Additionally, by exploring the integration of MySQL with external NFS Server that allowing for high availability of the cluster schedulers.</p>
-<h2 id="architecture"><a class="markdownIt-Anchor" href="#architecture">#</a> Architecture</h2>
-<p>With the following architecture, you can build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environments.<br>
-All the resources are deployed in the same resource group, virtual network. The CycleCloud Cluster is deployed in the subnet  <code>snet-cc</code>  , the Slurm Cluster is deployed in the subnet  <code>snet-slurm</code>  , the MySQL Server is deployed in the subnet  <code>snet-mysql</code>  , the NFS Server is deployed in the subnet  <code>snet-anf</code>  .</p>
-<p>The Slurm Cluster source for CycleCloud will be downloaded from the <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0F6dXJlL2N5Y2xlY2xvdWQtc2x1cm0=">Azure-CycleCloud-Slurm</span> GitHub repository.<br>
-<img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image.png" alt="alt text"></p>
-<h2 id="prerequisites"><a class="markdownIt-Anchor" href="#prerequisites">#</a> Prerequisites</h2>
-<ul>
-<li>Virtual network:</li>
+    <h1 id="Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments"><a href="#Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments" class="headerlink" title="Build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environments"></a>Build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environments</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>In this guide, you can walk through the process of setting up a CycleCloud environment that seamlessly integrates with a Slurm Cluster. Additionally, by exploring the integration of MySQL with external NFS Server that allowing for high availability of the cluster schedulers.</p>
+<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>With the following architecture, you can build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environments.<br>All the resources are deployed in the same resource group, virtual network. The CycleCloud Cluster is deployed in the subnet <code>snet-cc</code> , the Slurm Cluster is deployed in the subnet <code>snet-slurm</code> , the MySQL Server is deployed in the subnet <code>snet-mysql</code> , the NFS Server is deployed in the subnet <code>snet-anf</code> .</p>
+<p>The Slurm Cluster source for CycleCloud will be downloaded from the <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0F6dXJlL2N5Y2xlY2xvdWQtc2x1cm0=">Azure-CycleCloud-Slurm</span> GitHub repository.<br><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image.png" alt="alt text"></p>
+<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><ul>
+<li>Virtual network:<br>| # | Virtual Network Name | Address Space |</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>#</th>
-<th>Virtual Network Name</th>
-<th>Address Space</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>vnet-cc-slurm</td>
-<td>10.0.0.0/16</td>
-</tr>
-</tbody>
-</table>
+<p>|—|———————-|—————|<br>| 1 | vnet-cc-slurm        | 10.0.0.0&#x2F;16   |</p>
 <ul>
-<li>Subnets:</li>
+<li>Subnets:<br>| # | Name         | Address        | NSG             | Delegation                              |</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>#</th>
-<th>Name</th>
-<th>Address</th>
-<th>NSG</th>
-<th>Delegation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>snet-cc</td>
-<td>10.0.0.0/24</td>
-<td>nsg-snet-cc</td>
-<td>–</td>
-</tr>
-<tr>
-<td>2</td>
-<td>snet-slurm</td>
-<td>10.0.1.0/24</td>
-<td>nsg-snet-slurm</td>
-<td>–</td>
-</tr>
-<tr>
-<td>3</td>
-<td>snet-anf</td>
-<td>10.0.2.0/24</td>
-<td>nsg-snet-anf</td>
-<td>Microsoft.NetApp/volumes</td>
-</tr>
-<tr>
-<td>4</td>
-<td>snet-pe</td>
-<td>10.0.3.0/24</td>
-<td>nsg-snet-pe</td>
-<td>–</td>
-</tr>
-<tr>
-<td>5</td>
-<td>snet-worker</td>
-<td>10.0.4.0/24</td>
-<td>nsg-snet-worker</td>
-<td>–</td>
-</tr>
-<tr>
-<td>6</td>
-<td>snet-mysql</td>
-<td>10.0.5.0/23</td>
-<td>nsg-snet-mysql</td>
-<td>Microsoft.DBforMySQL/flexibleServers</td>
-</tr>
-</tbody>
-</table>
+<p>|—|————–|—————-|—————–|—————————————–|<br>| 1 | snet-cc      | 10.0.0.0&#x2F;24    | nsg-snet-cc     | –                                      |<br>| 2 | snet-slurm   | 10.0.1.0&#x2F;24    | nsg-snet-slurm  | –                                      |<br>| 3 | snet-anf     | 10.0.2.0&#x2F;24    | nsg-snet-anf    | Microsoft.NetApp&#x2F;volumes                |<br>| 4 | snet-pe      | 10.0.3.0&#x2F;24    | nsg-snet-pe     | –                                      |<br>| 5 | snet-worker  | 10.0.4.0&#x2F;24    | nsg-snet-worker | –                                      |<br>| 6 | snet-mysql   | 10.0.5.0&#x2F;23    | nsg-snet-mysql  | Microsoft.DBforMySQL&#x2F;flexibleServers    |</p>
 <ul>
-<li>Azure cli command to create a virtual network with subnets:</li>
+<li>Azure cli command to create a virtual network with subnets:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">az group create -l japaneast -n rg-jpe-cc-slurm-20230715</span><br><span class="line"></span><br><span class="line">az network nsg create -g rg-jpe-cc-slurm-20230715 -l japaneast -n nsg-snet-cc</span><br><span class="line">az network nsg create -g rg-jpe-cc-slurm-20230715 -l japaneast -n nsg-snet-slurm</span><br><span class="line">az network nsg create -g rg-jpe-cc-slurm-20230715 -l japaneast -n nsg-snet-anf</span><br><span class="line">az network nsg create -g rg-jpe-cc-slurm-20230715 -l japaneast -n nsg-snet-pe</span><br><span class="line">az network nsg create -g rg-jpe-cc-slurm-20230715 -l japaneast -n nsg-snet-worker</span><br><span class="line">az network nsg create -g rg-jpe-cc-slurm-20230715 -l japaneast -n nsg-snet-mysql</span><br><span class="line"></span><br><span class="line">az network vnet create \</span><br><span class="line">    --resource-group rg-jpe-cc-slurm-20230715 \</span><br><span class="line">    --name vnet-jpe-cc-slurm-20230715 \</span><br><span class="line">    --address-prefixes 10.0.0.0/16 \</span><br><span class="line">    --subnet-name snet-cc \</span><br><span class="line">    --subnet-prefixes 10.0.0.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-cc</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group rg-jpe-cc-slurm-20230715 \</span><br><span class="line">    --vnet-name vnet-jpe-cc-slurm-20230715 \</span><br><span class="line">    --name snet-slurm \</span><br><span class="line">    --address-prefixes 10.0.1.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-slurm</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group rg-jpe-cc-slurm-20230715 \</span><br><span class="line">    --vnet-name vnet-jpe-cc-slurm-20230715 \</span><br><span class="line">    --name snet-anf \</span><br><span class="line">    --address-prefixes 10.0.2.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-anf \</span><br><span class="line">    --delegations Microsoft.NetApp/volumes</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group rg-jpe-cc-slurm-20230715 \</span><br><span class="line">    --vnet-name vnet-jpe-cc-slurm-20230715 \</span><br><span class="line">    --name snet-pe \</span><br><span class="line">    --address-prefixes 10.0.3.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-pe</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group rg-jpe-cc-slurm-20230715 \</span><br><span class="line">    --vnet-name vnet-jpe-cc-slurm-20230715 \</span><br><span class="line">    --name snet-worker \</span><br><span class="line">    --address-prefixes 10.0.4.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-worker</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group rg-jpe-cc-slurm-20230715 \</span><br><span class="line">    --vnet-name vnet-jpe-cc-slurm-20230715 \</span><br><span class="line">    --name snet-mysql \</span><br><span class="line">    --address-prefixes 10.0.5.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-mysql \</span><br><span class="line">    --delegations Microsoft.DBforMySQL/flexibleServers</span><br></pre></td></tr></table></figure></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">az group create -l japaneast -n rg-jpe-cc-slurm-20230715</span><br><span class="line"></span><br><span class="line">az network nsg create -g rg-jpe-cc-slurm-20230715 -l japaneast -n nsg-snet-cc</span><br><span class="line">az network nsg create -g rg-jpe-cc-slurm-20230715 -l japaneast -n nsg-snet-slurm</span><br><span class="line">az network nsg create -g rg-jpe-cc-slurm-20230715 -l japaneast -n nsg-snet-anf</span><br><span class="line">az network nsg create -g rg-jpe-cc-slurm-20230715 -l japaneast -n nsg-snet-pe</span><br><span class="line">az network nsg create -g rg-jpe-cc-slurm-20230715 -l japaneast -n nsg-snet-worker</span><br><span class="line">az network nsg create -g rg-jpe-cc-slurm-20230715 -l japaneast -n nsg-snet-mysql</span><br><span class="line"></span><br><span class="line">az network vnet create \</span><br><span class="line">    --resource-group rg-jpe-cc-slurm-20230715 \</span><br><span class="line">    --name vnet-jpe-cc-slurm-20230715 \</span><br><span class="line">    --address-prefixes 10.0.0.0/16 \</span><br><span class="line">    --subnet-name snet-cc \</span><br><span class="line">    --subnet-prefixes 10.0.0.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-cc</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group rg-jpe-cc-slurm-20230715 \</span><br><span class="line">    --vnet-name vnet-jpe-cc-slurm-20230715 \</span><br><span class="line">    --name snet-slurm \</span><br><span class="line">    --address-prefixes 10.0.1.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-slurm</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group rg-jpe-cc-slurm-20230715 \</span><br><span class="line">    --vnet-name vnet-jpe-cc-slurm-20230715 \</span><br><span class="line">    --name snet-anf \</span><br><span class="line">    --address-prefixes 10.0.2.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-anf \</span><br><span class="line">    --delegations Microsoft.NetApp/volumes</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group rg-jpe-cc-slurm-20230715 \</span><br><span class="line">    --vnet-name vnet-jpe-cc-slurm-20230715 \</span><br><span class="line">    --name snet-pe \</span><br><span class="line">    --address-prefixes 10.0.3.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-pe</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group rg-jpe-cc-slurm-20230715 \</span><br><span class="line">    --vnet-name vnet-jpe-cc-slurm-20230715 \</span><br><span class="line">    --name snet-worker \</span><br><span class="line">    --address-prefixes 10.0.4.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-worker</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group rg-jpe-cc-slurm-20230715 \</span><br><span class="line">    --vnet-name vnet-jpe-cc-slurm-20230715 \</span><br><span class="line">    --name snet-mysql \</span><br><span class="line">    --address-prefixes 10.0.5.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-mysql \</span><br><span class="line">    --delegations Microsoft.DBforMySQL/flexibleServers</span><br></pre></td></tr></table></figure>
-<h2 id="deploy-cyclecloud-cluster"><a class="markdownIt-Anchor" href="#deploy-cyclecloud-cluster">#</a> Deploy CycleCloud Cluster</h2>
-<ul>
+<h2 id="Deploy-CycleCloud-Cluster"><a href="#Deploy-CycleCloud-Cluster" class="headerlink" title="Deploy CycleCloud Cluster"></a>Deploy CycleCloud Cluster</h2><ul>
 <li>Refer to Create a <span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL2N5Y2xlY2xvdWQvcXMtaW5zdGFsbC1tYXJrZXRwbGFjZT92aWV3PWN5Y2xlY2xvdWQtOA==">CycleCloud Cluster</span> to create a CycleCloud Cluster.</li>
-<li>After the CycleCloud Cluster is created, you can access the CycleCloud Web UI with the URL: <span class="exturl" data-url="aHR0cDovL2N5Y2xlY2xvdWQtY2x1c3Rlci1JUA==">http://cyclecloud-cluster-IP</span></li>
+<li>After the CycleCloud Cluster is created, you can access the CycleCloud Web UI with the URL: <span class="exturl" data-url="aHR0cDovL2N5Y2xlY2xvdWQtY2x1c3Rlci1pcC8=">http://cyclecloud-cluster-IP</span></li>
 </ul>
 <blockquote>
-<p><strong>Note:</strong> Before accessing the CycleCloud Web UI, you need to add an inbound rule to the NSG of the CycleCloud Cluster subnet. The inbound rules (HTTP/HTTPS) should allow access from your IP address to the CycleCloud Cluster subnet.</p>
+<p><strong>Note:</strong> Before accessing the CycleCloud Web UI, you need to add an inbound rule to the NSG of the CycleCloud Cluster subnet. The inbound rules (HTTP&#x2F;HTTPS) should allow access from your IP address to the CycleCloud Cluster subnet.</p>
 </blockquote>
 <ul>
-<li>
-<p>Create a Storage account for CycleCloud locker storage.<br>
-(1) Create a storage account with private endpoint enabled for as a private CycleCloud locker storage.<br>
-<img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-1.png" alt="alt text"></p>
+<li><p>Create a Storage account for CycleCloud locker storage.<br>(1) Create a storage account with private endpoint enabled for as a private CycleCloud locker storage.<br><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-1.png" alt="alt text"></p>
 </li>
-<li>
-<p>Add a subscription to CycleCloud Cluster</p>
+<li><p>Add a subscription to CycleCloud Cluster</p>
 </li>
 </ul>
 <p>(1) Before adding a subscription, you need to enable the system assigned identity of CycleCloud Cluster VM.</p>
-<p>(2) On VM settings, click  <code>Identity</code>  and click  <code>Azure role assignments</code>  to add a role assignment to the system assigned identity.<br>
-<img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-2.png" alt="alt text"></p>
-<p>(3) Assign the subscription  <code>contributor</code>  role to the system assigned identity. Contributor role has a higher privilege level than CycleCloud required. In case of security concern, you can assign a lower privilege level role to the system assigned identity. Refer to <span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL2N5Y2xlY2xvdWQvaG93LXRvL21hbmFnZWQtaWRlbnRpdGllcz92aWV3PWN5Y2xlY2xvdWQtOCNjcmVhdGUtYS1jdXN0b20tcm9sZS1hbmQtbWFuYWdlZC1pZGVudGl0eS1mb3ItY3ljbGVjbG91ZA==">CycleCloud Documentation</span> to crate a custom role for CycleCloud.<br>
-<img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-3.png" alt="alt text"></p>
-<p>(4) After adding a role assignment to the system assigned identity, you can add a subscription to CycleCloud Cluster. On the CycleCloud Web UI, click  <code>Add Subscription</code>  and input the storage created in previous step. Save as a CycleCloud subscription.<br>
-<img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-4.png" alt="alt text"></p>
-<h2 id="prepare-a-nfs-for-slurm-cluster"><a class="markdownIt-Anchor" href="#prepare-a-nfs-for-slurm-cluster">#</a> Prepare a NFS for Slurm cluster</h2>
-<p>As we’re building a high availability Scheduler environment, we need to prepare a NFS server for Slurm Cluster. The NFS server is used to store the Slurm configuration files and the Slurm state files. The NFS server can be a VM or a NFS service. In this case, we use Azure NetApp Files as a NFS service.</p>
+<p>(2) On VM settings, click <code>Identity</code> and click <code>Azure role assignments</code> to add a role assignment to the system assigned identity.<br><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-2.png" alt="alt text"></p>
+<p>(3) Assign the subscription <code>contributor</code> role to the system assigned identity. Contributor role has a higher privilege level than CycleCloud required. In case of security concern, you can assign a lower privilege level role to the system assigned identity. Refer to <span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL2N5Y2xlY2xvdWQvaG93LXRvL21hbmFnZWQtaWRlbnRpdGllcz92aWV3PWN5Y2xlY2xvdWQtOCNjcmVhdGUtYS1jdXN0b20tcm9sZS1hbmQtbWFuYWdlZC1pZGVudGl0eS1mb3ItY3ljbGVjbG91ZA==">CycleCloud Documentation</span> to crate a custom role for CycleCloud.<br><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-3.png" alt="alt text"></p>
+<p>(4) After adding a role assignment to the system assigned identity, you can add a subscription to CycleCloud Cluster. On the CycleCloud Web UI, click <code>Add Subscription</code> and input the storage created in previous step. Save as a CycleCloud subscription.<br><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-4.png" alt="alt text"></p>
+<h2 id="Prepare-a-NFS-for-Slurm-cluster"><a href="#Prepare-a-NFS-for-Slurm-cluster" class="headerlink" title="Prepare a NFS for Slurm cluster"></a>Prepare a NFS for Slurm cluster</h2><p>As we’re building a high availability Scheduler environment, we need to prepare a NFS server for Slurm Cluster. The NFS server is used to store the Slurm configuration files and the Slurm state files. The NFS server can be a VM or a NFS service. In this case, we use Azure NetApp Files as a NFS service.</p>
 <ul>
 <li>Create Azure NetApp Files</li>
 </ul>
 <p>(1) Create a Azure NetApp Files service. Refer to Create a Azure NetApp Files service to <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLm1pY3Jvc29mdC5jb20vZW4tdXMvYXp1cmUvYXp1cmUtbmV0YXBwLWZpbGVzL2F6dXJlLW5ldGFwcC1maWxlcy1jcmVhdGUtdm9sdW1lcz90YWJzPWF6dXJlLXBvcnRhbCNjcmVhdGUtYS1uZXRhcHAtYWNjb3VudC1hbmQtY2FwYWNpdHktcG9vbA==">create a Azure NetApp Files service</span> and a capacity pool.</p>
-<p>(2) Create two volumes in the capacity pool (  <code>sched</code>  and  <code>shared</code>  ).</p>
-<p>A. Set the  <code>Network features</code>  to  <code>Standard</code> <br>
-B. Set the  <code>Protocol types</code>  to  <code>NFSv4.1</code> <br>
-C. Set the  <code>Unix permissions</code>  to  <code>0775</code></p>
+<p>(2) Create two volumes in the capacity pool ( <code>sched</code> and <code>shared</code> ).</p>
+<p> A. Set the <code>Network features</code> to <code>Standard</code><br> B. Set the <code>Protocol types</code> to <code>NFSv4.1</code><br> C. Set the <code>Unix permissions</code> to <code>0775</code></p>
 <p><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-5.png" alt="alt text"></p>
 <p><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-6.png" alt="alt text"></p>
 <ul>
 <li>Write down the NFS mount point of the two volumes. The NFS mount point is used to mount the volumes to the Slurm Cluster VMs.</li>
 </ul>
 <p><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-7.png" alt="alt text"></p>
-<h2 id="create-a-mysql-database-service"><a class="markdownIt-Anchor" href="#create-a-mysql-database-service">#</a> Create a MySQL Database Service</h2>
-<p>Create a MySQL Database Service. Refer to <span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL215c3FsL2ZsZXhpYmxlLXNlcnZlci9xdWlja3N0YXJ0LWNyZWF0ZS1zZXJ2ZXItcG9ydGFs">Create a MySQL Database Service</span> to create a MySQL Flexible Server.</p>
-<p>In the network setting, select the  <code>Private access (VNet Integration)</code>  as Connectivity method.</p>
+<h2 id="Create-a-MySQL-Database-Service"><a href="#Create-a-MySQL-Database-Service" class="headerlink" title="Create a MySQL Database Service"></a>Create a MySQL Database Service</h2><p>Create a MySQL Database Service. Refer to <span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL215c3FsL2ZsZXhpYmxlLXNlcnZlci9xdWlja3N0YXJ0LWNyZWF0ZS1zZXJ2ZXItcG9ydGFs">Create a MySQL Database Service</span> to create a MySQL Flexible Server.</p>
+<p>In the network setting, select the <code>Private access (VNet Integration)</code> as Connectivity method.</p>
 <p><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-8.png" alt="alt text"></p>
-<h2 id="prepare-a-vm-image-for-slurm-cluster"><a class="markdownIt-Anchor" href="#prepare-a-vm-image-for-slurm-cluster">#</a> Prepare a VM image for Slurm Cluster</h2>
-<p>In this tutorial, we use OpenLogic CentOS 7.9 generation 2 from Marketplace as a base OS image. You can use your own VM image as a base OS image.</p>
+<h2 id="Prepare-a-VM-image-for-Slurm-Cluster"><a href="#Prepare-a-VM-image-for-Slurm-Cluster" class="headerlink" title="Prepare a VM image for Slurm Cluster"></a>Prepare a VM image for Slurm Cluster</h2><p>In this tutorial, we use OpenLogic CentOS 7.9 generation 2 from Marketplace as a base OS image. You can use your own VM image as a base OS image.</p>
 <ul>
-<li>Create a VM from the base OS image. Login to the image and install the following packages.</li>
+<li>Create a VM from the base OS image. Login to the image and install the following packages.<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo -i</span><br><span class="line">yum update</span><br><span class="line">wget -P /tmp https://raw.githubusercontent.com/themorey/cyclecloud-scripts/main/slurm-install.sh</span><br><span class="line">bash /tmp/slurm-install.sh</span><br></pre></td></tr></table></figure>
+<img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-9.png" alt="alt text"></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo -i</span><br><span class="line">yum update</span><br><span class="line">wget -P /tmp https://raw.githubusercontent.com/themorey/cyclecloud-scripts/main/slurm-install.sh</span><br><span class="line">bash /tmp/slurm-install.sh</span><br></pre></td></tr></table></figure>
-<p><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-9.png" alt="alt text"></p>
 <p><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-10.png" alt="alt text"></p>
 <ul>
-<li>After installing the packages, run the following command to check if it works properly without error.</li>
-</ul>
+<li><p>After installing the packages, run the following command to check if it works properly without error.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> sinfo</span><br><span class="line"><span class="built_in">id</span> slurm</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Deprovision the VM, remove +user if you want to keep the user account.</li>
-</ul>
+</li>
+<li><p>Deprovision the VM, remove +user if you want to keep the user account.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">waagent deprovision+user --force</span><br></pre></td></tr></table></figure>
 <p><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-11.png" alt="alt text"></p>
-<ul>
-<li>There is an issue that Scheduler VM not register to Azure DNS successfully, thus we need to do following step to mitigate the issue.</li>
+</li>
+<li><p>There is an issue that Scheduler VM not register to Azure DNS successfully, thus we need to do following step to mitigate the issue.</p>
+</li>
 </ul>
 <blockquote>
 <p>We need to this step after deprovision waagent and before create a VM image.</p>
 </blockquote>
-<p>Check the  <code>/etc/sysconfig/network-scripts/ifcfg-eth0</code>  file and remove  <code>DHCP_HOSTNAME=localhost.localdomain</code></p>
+<p>Check the <code>/etc/sysconfig/network-scripts/ifcfg-eth0</code> file and remove <code>DHCP_HOSTNAME=localhost.localdomain</code></p>
 <p><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-12.png" alt="alt text"></p>
 <ul>
 <li>Capture the VM to VM image. Refer to <span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL3ZpcnR1YWwtbWFjaGluZXMvZ2VuZXJhbGl6ZQ==">Create a VM image</span> to create a VM image.</li>
 </ul>
-<h2 id="prepare-a-slurm-cluster-project-template-for-cyclecloud"><a class="markdownIt-Anchor" href="#prepare-a-slurm-cluster-project-template-for-cyclecloud">#</a> Prepare a Slurm Cluster project template for CycleCloud</h2>
-<ul>
-<li>Login to CycleCloud Server and initialize the CycleCloud Server.</li>
-</ul>
+<h2 id="Prepare-a-Slurm-Cluster-project-template-for-CycleCloud"><a href="#Prepare-a-Slurm-Cluster-project-template-for-CycleCloud" class="headerlink" title="Prepare a Slurm Cluster project template for CycleCloud"></a>Prepare a Slurm Cluster project template for CycleCloud</h2><ul>
+<li><p>Login to CycleCloud Server and initialize the CycleCloud Server.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cyclecloud initialize</span><br></pre></td></tr></table></figure>
 <p><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-13.png" alt="alt text"></p>
-<ul>
-<li>Login to CycleCloud Server and prepare Azure-Slurm 2.7.3 project</li>
+</li>
+<li><p>Login to CycleCloud Server and prepare Azure-Slurm 2.7.3 project</p>
+</li>
 </ul>
 <p>(1) Get the Azure-Slurm 2.7.3 project from GitHub.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> slurm273</span><br><span class="line">cyclecloud project fetch https://github.com/Azure/cyclecloud-slurm/releases/2.7.3 slurm273</span><br></pre></td></tr></table></figure>
+
 <p>(2) Build the project</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> slurm273</span><br><span class="line">cyclecloud project build </span><br><span class="line">sudo <span class="built_in">mkdir</span> -p /opt/cycle_server/work/staging/projects/slurm/2.7.3</span><br><span class="line">sudo <span class="built_in">mkdir</span> -p /opt/cycle_server/work/staging/projects/slurm/blobs </span><br><span class="line">sudo <span class="built_in">cp</span> -r build/slurm/* /opt/cycle_server/work/staging/projects/slurm/2.7.3</span><br><span class="line">sudo <span class="built_in">cp</span> -r blobs/* /opt/cycle_server/work/staging/projects/slurm/blobs</span><br><span class="line">sudo <span class="built_in">chown</span> -R cycle_server:cycle_server /opt/cycle_server/work/staging</span><br></pre></td></tr></table></figure>
-<p>(3) Add following lines to ~/slurm273/specs/default/chef/site-cookbooks/slurm/recipes/login.rb for login server template</p>
+<p>(3) Add following lines to ~&#x2F;slurm273&#x2F;specs&#x2F;default&#x2F;chef&#x2F;site-cookbooks&#x2F;slurm&#x2F;recipes&#x2F;login.rb for login server template</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">link</span> <span class="string">&#x27;/etc/slurm/keep_alive.conf&#x27;</span> <span class="keyword">do</span></span><br><span class="line"> to <span class="string">&#x27;/sched/keep_alive.conf&#x27;</span></span><br><span class="line"> owner <span class="string">&quot;#&#123;slurmuser&#125;&quot;</span></span><br><span class="line"> group <span class="string">&quot;#&#123;slurmuser&#125;&quot;</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">service <span class="string">&#x27;munge&#x27;</span> <span class="keyword">do</span></span><br><span class="line"> action [:<span class="built_in">enable</span>, :restart]</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">include_recipe <span class="string">&#x27;slurm::accounting&#x27;</span></span><br></pre></td></tr></table></figure>
+
 <p><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-14.png" alt="alt text"></p>
 <ul>
 <li>Preload the MySQL certificate</li>
 </ul>
-<p>(1) On CycleCloud Server, download the certificate to  <code>~/slurm273/specs/default/chef/site-cookbooks/slurm/files/default</code>  folder.</p>
+<p>(1) On CycleCloud Server, download the certificate to <code>~/slurm273/specs/default/chef/site-cookbooks/slurm/files/default</code> folder.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/slurm273/specs/default/chef/site-cookbooks/slurm/files/default</span><br><span class="line">wget https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem</span><br></pre></td></tr></table></figure>
 <p><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-15.png" alt="alt text"></p>
-<p>(2) Edit the  <code>~/slurm273/specs/default/chef/site-cookbooks/slurm/recipes/accounting.rb</code>  file with following changes.</p>
-<p>A. Change the  <code>remote_file</code>  to  <code>cookbook_file</code> <br>
-B. Comment out the original source line<br>
-C. Add a new source to  <code>DigiCertGlobalRootCA.crt.pem</code></p>
+<p>(2) Edit the <code>~/slurm273/specs/default/chef/site-cookbooks/slurm/recipes/accounting.rb</code> file with following changes.</p>
+<p> A. Change the <code>remote_file</code> to <code>cookbook_file</code><br> B. Comment out the original source line<br> C. Add a new source to <code>DigiCertGlobalRootCA.crt.pem</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cookbook_file <span class="string">&#x27;/etc/slurm/BaltimoreCyberTrustRoot.crt.pem&#x27;</span> <span class="keyword">do</span></span><br><span class="line"> <span class="comment">#source node[:slurm][:accounting][:certificate_url]</span></span><br><span class="line"> <span class="built_in">source</span> <span class="string">&#x27;DigiCertGlobalRootCA.crt.pem&#x27;</span></span><br><span class="line"> owner <span class="string">&#x27;slurm&#x27;</span></span><br><span class="line"> group <span class="string">&#x27;slurm&#x27;</span></span><br><span class="line"> mode 0644</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 <p><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-16.png" alt="alt text"></p>
 <ul>
 <li>Edit the Slurm Cluster template</li>
 </ul>
-<p>(1) Edit the  <code>~/slurm273/templates/slurm.txt</code>  file, change following lines.</p>
+<p>(1) Edit the <code>~/slurm273/templates/slurm.txt</code> file, change following lines.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[[[cluster-init slurm:default:2.7.3]]] </span><br><span class="line">[[[cluster-init slurm:scheduler:2.7.3]]] </span><br><span class="line">[[[cluster-init slurm:login:2.7.3]]] </span><br><span class="line">[[[cluster-init slurm:execute:2.7.3]]]</span><br></pre></td></tr></table></figure>
+
 <p>(2) Run the following command to set slurm.install to false.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;/slurm_version$/a \\tslurm.install = false&#x27;</span> ~/slurm273/templates/slurm.txt</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>Upload the project files to CycleCloud locker storage.</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cyclecloud locker list </span><br><span class="line">cyclecloud project upload <span class="string">&quot;storagename&quot;</span> (<span class="keyword">in</span> my <span class="keyword">case</span>: </span><br><span class="line">cc-slurm-20230715-storage)</span><br></pre></td></tr></table></figure>
-<h2 id="create-a-slurm-cluster-with-cyclecloud"><a class="markdownIt-Anchor" href="#create-a-slurm-cluster-with-cyclecloud">#</a> Create a Slurm Cluster with CycleCloud</h2>
-<p>Login to CycleCloud Server, run the following command to create a Slurm Cluster.</p>
+
+<h2 id="Create-a-Slurm-Cluster-with-CycleCloud"><a href="#Create-a-Slurm-Cluster-with-CycleCloud" class="headerlink" title="Create a Slurm Cluster with CycleCloud"></a>Create a Slurm Cluster with CycleCloud</h2><p>Login to CycleCloud Server, run the following command to create a Slurm Cluster.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cyclecloud import_cluster slurm-20230715 -c slurm -f ~/slurm273/templates/slurm.txt</span><br></pre></td></tr></table></figure>
 <p><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-17.png" alt="alt text"></p>
-<h2 id="configure-slurm-cluster"><a class="markdownIt-Anchor" href="#configure-slurm-cluster">#</a> Configure Slurm Cluster</h2>
-<ul>
+<h2 id="Configure-Slurm-Cluster"><a href="#Configure-Slurm-Cluster" class="headerlink" title="Configure Slurm Cluster"></a>Configure Slurm Cluster</h2><ul>
 <li>Login to CycleCloud web UI, edit the Slurm Cluster settings</li>
 </ul>
-<p>(1) Configure the  <code>Network Attached Storage</code>  to the NFS volume created in previous step. Where IP address is your NFS volume mount path.</p>
+<p>(1) Configure the <code>Network Attached Storage</code> to the NFS volume created in previous step. Where IP address is your NFS volume mount path.</p>
 <p><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-18.png" alt="alt text"></p>
-<p>(2) Configure the  <code>Advanced Settings</code>  to enable the  <code>Slurm HA Scheduler</code>  and  <code>MySQL HA Database</code> .</p>
-<p>(3) Set the Scheduler OS and HPC OS, HTC OS to  <code>custom image</code>  and set to VM image’s resource id.</p>
+<p>(2) Configure the <code>Advanced Settings</code> to enable the <code>Slurm HA Scheduler</code> and <code>MySQL HA Database</code>.</p>
+<p>(3) Set the Scheduler OS and HPC OS, HTC OS to <code>custom image</code> and set to VM image’s resource id.</p>
 <p><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-19.png" alt="alt text"></p>
-<p>(4) Uncheck  <code>Return Proxy</code>  and  <code>Public Head Node</code>  settings.</p>
+<p>(4) Uncheck <code>Return Proxy</code> and <code>Public Head Node</code> settings.</p>
 <p><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image-20.png" alt="alt text"></p>
 <p>Now we have all the components ready, we can start to use Slurm Cluster.</p>
 <hr>
-<h2 id="reference"><a class="markdownIt-Anchor" href="#reference">#</a> Reference</h2>
-<ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0F6dXJlL2N5Y2xlY2xvdWQtc2x1cm0=">GitHub - Azure CycleCloud Slurm</span></li>
 <li><span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL2N5Y2xlY2xvdWQvcXMtaW5zdGFsbC1tYXJrZXRwbGFjZT92aWV3PWN5Y2xlY2xvdWQtOA==">Quickstart - Install CycleCloud using the Marketplace image</span></li>
 <li><span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL2N5Y2xlY2xvdWQvaG93LXRvL21hbmFnZWQtaWRlbnRpdGllcz92aWV3PWN5Y2xlY2xvdWQtOCNjcmVhdGUtYS1jdXN0b20tcm9sZS1hbmQtbWFuYWdlZC1pZGVudGl0eS1mb3ItY3ljbGVjbG91ZA==">Create a custom role and managed identity for CycleCloud</span></li>
@@ -447,7 +355,7 @@ C. Add a new source to  <code>DigiCertGlobalRootCA.crt.pem</code></p>
     <div class="item right">
       
 
-  <a href="/2023/07/27/Gathering-CycleCloud-service-JVM-heap-usage-to-Log-Analytics/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?263275" title="Gathering CycleCloud service JVM heap usage to Log Analytics">
+  <a href="/2023/07/27/Gathering-CycleCloud-service-JVM-heap-usage-to-Log-Analytics/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?169539" title="Gathering CycleCloud service JVM heap usage to Log Analytics">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> CycleCloud</span>
   <h3>Gathering CycleCloud service JVM heap usage to Log Analytics</h3>
@@ -469,7 +377,7 @@ C. Add a new source to  <code>DigiCertGlobalRootCA.crt.pem</code></p>
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#build-a-cyclecloud-with-slurm-cluster-integrated-mysql-and-scheduler-ha-environments"><span class="toc-number">1.</span> <span class="toc-text"> Build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environments</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction"><span class="toc-number">1.1.</span> <span class="toc-text"> Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#architecture"><span class="toc-number">1.2.</span> <span class="toc-text"> Architecture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prerequisites"><span class="toc-number">1.3.</span> <span class="toc-text"> Prerequisites</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#deploy-cyclecloud-cluster"><span class="toc-number">1.4.</span> <span class="toc-text"> Deploy CycleCloud Cluster</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prepare-a-nfs-for-slurm-cluster"><span class="toc-number">1.5.</span> <span class="toc-text"> Prepare a NFS for Slurm cluster</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#create-a-mysql-database-service"><span class="toc-number">1.6.</span> <span class="toc-text"> Create a MySQL Database Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prepare-a-vm-image-for-slurm-cluster"><span class="toc-number">1.7.</span> <span class="toc-text"> Prepare a VM image for Slurm Cluster</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prepare-a-slurm-cluster-project-template-for-cyclecloud"><span class="toc-number">1.8.</span> <span class="toc-text"> Prepare a Slurm Cluster project template for CycleCloud</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#create-a-slurm-cluster-with-cyclecloud"><span class="toc-number">1.9.</span> <span class="toc-text"> Create a Slurm Cluster with CycleCloud</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#configure-slurm-cluster"><span class="toc-number">1.10.</span> <span class="toc-text"> Configure Slurm Cluster</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reference"><span class="toc-number">1.11.</span> <span class="toc-text"> Reference</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments"><span class="toc-number">1.</span> <span class="toc-text">Build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environments</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture"><span class="toc-number">1.2.</span> <span class="toc-text">Architecture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prerequisites"><span class="toc-number">1.3.</span> <span class="toc-text">Prerequisites</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deploy-CycleCloud-Cluster"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy CycleCloud Cluster</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prepare-a-NFS-for-Slurm-cluster"><span class="toc-number">1.5.</span> <span class="toc-text">Prepare a NFS for Slurm cluster</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-a-MySQL-Database-Service"><span class="toc-number">1.6.</span> <span class="toc-text">Create a MySQL Database Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prepare-a-VM-image-for-Slurm-Cluster"><span class="toc-number">1.7.</span> <span class="toc-text">Prepare a VM image for Slurm Cluster</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prepare-a-Slurm-Cluster-project-template-for-CycleCloud"><span class="toc-number">1.8.</span> <span class="toc-text">Prepare a Slurm Cluster project template for CycleCloud</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-a-Slurm-Cluster-with-CycleCloud"><span class="toc-number">1.9.</span> <span class="toc-text">Create a Slurm Cluster with CycleCloud</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-Slurm-Cluster"><span class="toc-number">1.10.</span> <span class="toc-text">Configure Slurm Cluster</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">1.11.</span> <span class="toc-text">Reference</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
         <ul>
@@ -585,7 +493,7 @@ C. Add a new source to  <code>DigiCertGlobalRootCA.crt.pem</code></p>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">32 mins.</span>
+    <span title="Reading time total">33 mins.</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
