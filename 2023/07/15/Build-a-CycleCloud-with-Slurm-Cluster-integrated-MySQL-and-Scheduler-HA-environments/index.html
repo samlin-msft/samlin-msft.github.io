@@ -76,7 +76,7 @@ Build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environm
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>9.5k</span>
+    <span>9.4k</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -117,12 +117,12 @@ Build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environm
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?368760"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?476829"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?3121"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?856974"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?758703"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?53319"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?391729"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?298885"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?56547"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?913841"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?992088"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?150034"></li>
         </ul>
       </div>
     </header>
@@ -172,13 +172,78 @@ Build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environm
 <h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>With the following architecture, you can build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environments.<br>All the resources are deployed in the same resource group, virtual network. The CycleCloud Cluster is deployed in the subnet <code>snet-cc</code> , the Slurm Cluster is deployed in the subnet <code>snet-slurm</code> , the MySQL Server is deployed in the subnet <code>snet-mysql</code> , the NFS Server is deployed in the subnet <code>snet-anf</code> .</p>
 <p>The Slurm Cluster source for CycleCloud will be downloaded from the <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0F6dXJlL2N5Y2xlY2xvdWQtc2x1cm0=">Azure-CycleCloud-Slurm</span> GitHub repository.<br><img data-src="/2023/07/15/Build-a-CycleCloud-with-Slurm-Cluster-integrated-MySQL-and-Scheduler-HA-environments/image.png" alt="alt text"></p>
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><ul>
-<li>Virtual network:<br>| # | Virtual Network Name | Address Space |</li>
+<li>Virtual network:</li>
 </ul>
-<p>|—|———————-|—————|<br>| 1 | vnet-cc-slurm        | 10.0.0.0&#x2F;16   |</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Virtual Network Name</th>
+<th>Address Space</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>vnet-cc-slurm</td>
+<td>10.0.0.0&#x2F;16</td>
+</tr>
+</tbody></table>
 <ul>
-<li>Subnets:<br>| # | Name         | Address        | NSG             | Delegation                              |</li>
+<li>Subnets:</li>
 </ul>
-<p>|—|————–|—————-|—————–|—————————————–|<br>| 1 | snet-cc      | 10.0.0.0&#x2F;24    | nsg-snet-cc     | –                                      |<br>| 2 | snet-slurm   | 10.0.1.0&#x2F;24    | nsg-snet-slurm  | –                                      |<br>| 3 | snet-anf     | 10.0.2.0&#x2F;24    | nsg-snet-anf    | Microsoft.NetApp&#x2F;volumes                |<br>| 4 | snet-pe      | 10.0.3.0&#x2F;24    | nsg-snet-pe     | –                                      |<br>| 5 | snet-worker  | 10.0.4.0&#x2F;24    | nsg-snet-worker | –                                      |<br>| 6 | snet-mysql   | 10.0.5.0&#x2F;23    | nsg-snet-mysql  | Microsoft.DBforMySQL&#x2F;flexibleServers    |</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Address</th>
+<th>NSG</th>
+<th>Delegation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>snet-cc</td>
+<td>10.0.0.0&#x2F;24</td>
+<td>nsg-snet-cc</td>
+<td>–</td>
+</tr>
+<tr>
+<td>2</td>
+<td>snet-slurm</td>
+<td>10.0.1.0&#x2F;24</td>
+<td>nsg-snet-slurm</td>
+<td>–</td>
+</tr>
+<tr>
+<td>3</td>
+<td>snet-anf</td>
+<td>10.0.2.0&#x2F;24</td>
+<td>nsg-snet-anf</td>
+<td>Microsoft.NetApp&#x2F;volumes</td>
+</tr>
+<tr>
+<td>4</td>
+<td>snet-pe</td>
+<td>10.0.3.0&#x2F;24</td>
+<td>nsg-snet-pe</td>
+<td>–</td>
+</tr>
+<tr>
+<td>5</td>
+<td>snet-worker</td>
+<td>10.0.4.0&#x2F;24</td>
+<td>nsg-snet-worker</td>
+<td>–</td>
+</tr>
+<tr>
+<td>6</td>
+<td>snet-mysql</td>
+<td>10.0.5.0&#x2F;23</td>
+<td>nsg-snet-mysql</td>
+<td>Microsoft.DBforMySQL&#x2F;flexibleServers</td>
+</tr>
+</tbody></table>
 <ul>
 <li>Azure cli command to create a virtual network with subnets:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">az group create -l japaneast -n rg-jpe-cc-slurm-20230715</span><br><span class="line"></span><br><span class="line">az network nsg create -g rg-jpe-cc-slurm-20230715 -l japaneast -n nsg-snet-cc</span><br><span class="line">az network nsg create -g rg-jpe-cc-slurm-20230715 -l japaneast -n nsg-snet-slurm</span><br><span class="line">az network nsg create -g rg-jpe-cc-slurm-20230715 -l japaneast -n nsg-snet-anf</span><br><span class="line">az network nsg create -g rg-jpe-cc-slurm-20230715 -l japaneast -n nsg-snet-pe</span><br><span class="line">az network nsg create -g rg-jpe-cc-slurm-20230715 -l japaneast -n nsg-snet-worker</span><br><span class="line">az network nsg create -g rg-jpe-cc-slurm-20230715 -l japaneast -n nsg-snet-mysql</span><br><span class="line"></span><br><span class="line">az network vnet create \</span><br><span class="line">    --resource-group rg-jpe-cc-slurm-20230715 \</span><br><span class="line">    --name vnet-jpe-cc-slurm-20230715 \</span><br><span class="line">    --address-prefixes 10.0.0.0/16 \</span><br><span class="line">    --subnet-name snet-cc \</span><br><span class="line">    --subnet-prefixes 10.0.0.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-cc</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group rg-jpe-cc-slurm-20230715 \</span><br><span class="line">    --vnet-name vnet-jpe-cc-slurm-20230715 \</span><br><span class="line">    --name snet-slurm \</span><br><span class="line">    --address-prefixes 10.0.1.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-slurm</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group rg-jpe-cc-slurm-20230715 \</span><br><span class="line">    --vnet-name vnet-jpe-cc-slurm-20230715 \</span><br><span class="line">    --name snet-anf \</span><br><span class="line">    --address-prefixes 10.0.2.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-anf \</span><br><span class="line">    --delegations Microsoft.NetApp/volumes</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group rg-jpe-cc-slurm-20230715 \</span><br><span class="line">    --vnet-name vnet-jpe-cc-slurm-20230715 \</span><br><span class="line">    --name snet-pe \</span><br><span class="line">    --address-prefixes 10.0.3.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-pe</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group rg-jpe-cc-slurm-20230715 \</span><br><span class="line">    --vnet-name vnet-jpe-cc-slurm-20230715 \</span><br><span class="line">    --name snet-worker \</span><br><span class="line">    --address-prefixes 10.0.4.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-worker</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group rg-jpe-cc-slurm-20230715 \</span><br><span class="line">    --vnet-name vnet-jpe-cc-slurm-20230715 \</span><br><span class="line">    --name snet-mysql \</span><br><span class="line">    --address-prefixes 10.0.5.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-mysql \</span><br><span class="line">    --delegations Microsoft.DBforMySQL/flexibleServers</span><br></pre></td></tr></table></figure></li>
 </ul>
@@ -321,7 +386,7 @@ Build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environm
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2024-05-29 14:21:13" itemprop="dateModified" datetime="2024-05-29T14:21:13+08:00">2024-05-29</time>
+    <time title="Modified: 2024-06-18 15:42:16" itemprop="dateModified" datetime="2024-06-18T15:42:16+08:00">2024-06-18</time>
   </span>
 </div>
 
@@ -355,7 +420,7 @@ Build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environm
     <div class="item right">
       
 
-  <a href="/2023/07/27/Gathering-CycleCloud-service-JVM-heap-usage-to-Log-Analytics/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?227115" title="Gathering CycleCloud service JVM heap usage to Log Analytics">
+  <a href="/2023/07/27/Gathering-CycleCloud-service-JVM-heap-usage-to-Log-Analytics/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?501308" title="Gathering CycleCloud service JVM heap usage to Log Analytics">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> CycleCloud</span>
   <h3>Gathering CycleCloud service JVM heap usage to Log Analytics</h3>
@@ -493,7 +558,7 @@ Build a CycleCloud with Slurm Cluster integrated MySQL and Scheduler HA environm
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">33 mins.</span>
+    <span title="Reading time total">32 mins.</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
