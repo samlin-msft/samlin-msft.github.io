@@ -117,12 +117,12 @@ Slurm monitoring with Prometheus and Grafana - Slurm |
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?707335"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?481871"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?232375"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?552744"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?713183"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?643994"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?142573"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?694768"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?314977"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?43461"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?695677"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?881819"></li>
         </ul>
       </div>
     </header>
@@ -168,29 +168,31 @@ Slurm monitoring with Prometheus and Grafana - Slurm |
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="Slurm-Monitoring-with-Prometheus-and-Grafana"><a href="#Slurm-Monitoring-with-Prometheus-and-Grafana" class="headerlink" title="Slurm Monitoring with Prometheus and Grafana"></a>Slurm Monitoring with Prometheus and Grafana</h1><p>Monitoring Slurm, a powerful workload manager for Linux clusters, is crucial for optimizing cluster performance and resource utilization. In this blog post, we’ll explore how to set up Slurm monitoring using Prometheus and Grafana, two popular open-source tools for monitoring and visualization.</p>
-<h2 id="Preparing-Slurm-Exporter"><a href="#Preparing-Slurm-Exporter" class="headerlink" title="Preparing Slurm Exporter"></a>Preparing Slurm Exporter</h2><p>To start monitoring Slurm with Prometheus, we first need to prepare the Slurm Exporter. Follow these steps:</p>
+    <h1 id="slurm-monitoring-with-prometheus-and-grafana"><a class="markdownIt-Anchor" href="#slurm-monitoring-with-prometheus-and-grafana">#</a> Slurm Monitoring with Prometheus and Grafana</h1>
+<p>Monitoring Slurm, a powerful workload manager for Linux clusters, is crucial for optimizing cluster performance and resource utilization. In this blog post, we’ll explore how to set up Slurm monitoring using Prometheus and Grafana, two popular open-source tools for monitoring and visualization.</p>
+<h2 id="preparing-slurm-exporter"><a class="markdownIt-Anchor" href="#preparing-slurm-exporter">#</a> Preparing Slurm Exporter</h2>
+<p>To start monitoring Slurm with Prometheus, we first need to prepare the Slurm Exporter. Follow these steps:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y golang </span><br><span class="line">git <span class="built_in">clone</span> -b 0.20 https://github.com/vpenso/prometheus-slurm-exporter.git </span><br><span class="line"><span class="built_in">cd</span> prometheus-slurm-exporter </span><br><span class="line">make &amp;&amp; sudo <span class="built_in">cp</span> bin/prometheus-slurm-exporter /usr/bin/</span><br><span class="line">sudo su <span class="built_in">cat</span> &gt; /etc/systemd/system/prometheus-slurm-exporter.service &lt;&lt; <span class="string">EOF </span></span><br><span class="line"><span class="string">[Unit] </span></span><br><span class="line"><span class="string">Description=Prometheus SLURM Exporter </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Service] </span></span><br><span class="line"><span class="string">ExecStart=/usr/bin/prometheus-slurm-exporter </span></span><br><span class="line"><span class="string">Restart=on-failure </span></span><br><span class="line"><span class="string">RestartSec=15 </span></span><br><span class="line"><span class="string">Type=simple </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Install] </span></span><br><span class="line"><span class="string">WantedBy=multi-user.target </span></span><br><span class="line"><span class="string">EOF</span> </span><br><span class="line">sudo systemctl daemon-reload </span><br><span class="line">sudo systemctl <span class="built_in">enable</span> --now prometheus-slurm-exporter</span><br></pre></td></tr></table></figure>
-
 <p>This installs Golang, clones the Slurm Exporter repository, builds the exporter, and sets it up as a systemd service.</p>
-<h2 id="Preparing-Node-Exporter"><a href="#Preparing-Node-Exporter" class="headerlink" title="Preparing Node Exporter"></a>Preparing Node Exporter</h2><p>Next, we prepare the Node Exporter for system-level metrics:</p>
+<h2 id="preparing-node-exporter"><a class="markdownIt-Anchor" href="#preparing-node-exporter">#</a> Preparing Node Exporter</h2>
+<p>Next, we prepare the Node Exporter for system-level metrics:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/prometheus/node_exporter/releases/download/v1.7.0/node_exporter-1.7.0.linux-amd64.tar.gz</span><br><span class="line">tar xvfz node_exporter-1.7.0.linux-amd64.tar.gz</span><br><span class="line"><span class="built_in">cd</span> node_exporter-1.7.0.linux-amd64</span><br><span class="line">sudo <span class="built_in">cp</span> node_exporter /usr/bin/</span><br><span class="line">sudo su <span class="built_in">cat</span> &gt; /etc/systemd/system/node-exporter.service &lt;&lt; <span class="string">EOF </span></span><br><span class="line"><span class="string">[Unit] </span></span><br><span class="line"><span class="string">Description=Prometheus Node Exporter</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">[Service] </span></span><br><span class="line"><span class="string">ExecStart=/usr/bin/node_exporter </span></span><br><span class="line"><span class="string">Restart=on-failure </span></span><br><span class="line"><span class="string">RestartSec=15 </span></span><br><span class="line"><span class="string">Type=simple </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Install] </span></span><br><span class="line"><span class="string">WantedBy=multi-user.target </span></span><br><span class="line"><span class="string">EOF</span> </span><br><span class="line">sudo systemctl daemon-reload </span><br><span class="line">sudo systemctl <span class="built_in">enable</span> --now node-exporter</span><br></pre></td></tr></table></figure>
-
 <p>This downloads and sets up the Node Exporter binary and creates a systemd service for automatic startup.</p>
-<h2 id="Building-Docker-Image"><a href="#Building-Docker-Image" class="headerlink" title="Building Docker Image"></a>Building Docker Image</h2><p>Building a Docker image for Prometheus involves creating a Dockerfile and a prometheus.yml file. Here’s a simple example Dockerfile:</p>
+<h2 id="building-docker-image"><a class="markdownIt-Anchor" href="#building-docker-image">#</a> Building Docker Image</h2>
+<p>Building a Docker image for Prometheus involves creating a Dockerfile and a prometheus.yml file. Here’s a simple example Dockerfile:</p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> prom/prometheus</span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> prometheus.yml /etc/prometheus/</span></span><br></pre></td></tr></table></figure>
-
 <p>Build the Docker image using:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t my-prometheus .</span><br></pre></td></tr></table></figure>
-
-<h2 id="Pushing-Image-to-ACR"><a href="#Pushing-Image-to-ACR" class="headerlink" title="Pushing Image to ACR"></a>Pushing Image to ACR</h2><p>To deploy the Docker images to Azure Container Registry (ACR), follow these steps:</p>
+<h2 id="pushing-image-to-acr"><a class="markdownIt-Anchor" href="#pushing-image-to-acr">#</a> Pushing Image to ACR</h2>
+<p>To deploy the Docker images to Azure Container Registry (ACR), follow these steps:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">az acr login --name prometheus20231215 </span><br><span class="line">docker tag my-prometheus:latest prometheus20231215.azurecr.io/my-prometheus:latest </span><br><span class="line">docker push prometheus20231215.azurecr.io/my-prometheus:latest </span><br><span class="line">docker tag grafana/grafana-oss:latest prometheus20231215.azurecr.io/grafana-oss:latest </span><br><span class="line">docker push prometheus20231215.azurecr.io/grafana-oss:latest</span><br></pre></td></tr></table></figure>
-
 <p>Login to ACR, tag the images, and push them to the registry.</p>
-<h2 id="Configuring-App-Service-for-Container"><a href="#Configuring-App-Service-for-Container" class="headerlink" title="Configuring App Service for Container"></a>Configuring App Service for Container</h2><p>Configure Azure App Service for Containers to run Prometheus and Grafana. This step involves setting up the necessary environment variables and ensuring proper connectivity.</p>
+<h2 id="configuring-app-service-for-container"><a class="markdownIt-Anchor" href="#configuring-app-service-for-container">#</a> Configuring App Service for Container</h2>
+<p>Configure Azure App Service for Containers to run Prometheus and Grafana. This step involves setting up the necessary environment variables and ensuring proper connectivity.</p>
 <p><img data-src="/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/image.png" alt="alt text"></p>
 <p><img data-src="/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/image-1.png" alt="alt text"></p>
-<h2 id="Exploring-Prometheus-and-Grafana-Web-UI"><a href="#Exploring-Prometheus-and-Grafana-Web-UI" class="headerlink" title="Exploring Prometheus and Grafana Web UI"></a>Exploring Prometheus and Grafana Web UI</h2><p>By following these steps, you can establish a robust Slurm monitoring system using Prometheus and Grafana, empowering you to make informed decisions about cluster resource management.</p>
+<h2 id="exploring-prometheus-and-grafana-web-ui"><a class="markdownIt-Anchor" href="#exploring-prometheus-and-grafana-web-ui">#</a> Exploring Prometheus and Grafana Web UI</h2>
+<p>By following these steps, you can establish a robust Slurm monitoring system using Prometheus and Grafana, empowering you to make informed decisions about cluster resource management.</p>
 <ol>
 <li>Add the Prometheus as data source</li>
 </ol>
@@ -209,7 +211,8 @@ Slurm monitoring with Prometheus and Grafana - Slurm |
 </ol>
 <p><img data-src="/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/image-5.png" alt="alt text"></p>
 <hr>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<h2 id="reference"><a class="markdownIt-Anchor" href="#reference">#</a> Reference</h2>
+<ul>
 <li><span class="exturl" data-url="aHR0cHM6Ly9zd3NtaXRoLmNjL3Bvc3RzL2dyYWZhbmEtc2x1cm0uaHRtbA==">Sean Smith - GPU Monitoring with Grafana</span></li>
 <li><span class="exturl" data-url="aHR0cHM6Ly9ncmFmYW5hLmNvbS9ncmFmYW5hL2Rhc2hib2FyZHMvNDMyMy1zbHVybS1kYXNoYm9hcmQv">Slurm dashboard</span></li>
 </ul>
@@ -263,7 +266,7 @@ Slurm monitoring with Prometheus and Grafana - Slurm |
     <div class="item left">
       
 
-  <a href="/2023/08/21/Learning-APIM-Series-4-Enabling-API-activity-diagnostics-logs-with-APIM/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?596006" title="Learning APIM Series (4) - Enabling API activity diagnostics logs with APIM">
+  <a href="/2023/08/21/Learning-APIM-Series-4-Enabling-API-activity-diagnostics-logs-with-APIM/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?2082" title="Learning APIM Series (4) - Enabling API activity diagnostics logs with APIM">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> APIM</span>
   <h3>Learning APIM Series (4) - Enabling API activity diagnostics logs with APIM</h3>
@@ -273,7 +276,7 @@ Slurm monitoring with Prometheus and Grafana - Slurm |
     <div class="item right">
       
 
-  <a href="/2024/05/29/Integrating-CycleCloud-Server-Logs-with-Azure-Log-Analytics-for-Enhanced-Monitoring-on-Azure-Dashboard/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?719204" title="Integrating CycleCloud Server Logs with Azure Log Analytics for Enhanced Monitoring on Azure Dashboard">
+  <a href="/2024/05/29/Integrating-CycleCloud-Server-Logs-with-Azure-Log-Analytics-for-Enhanced-Monitoring-on-Azure-Dashboard/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?95559" title="Integrating CycleCloud Server Logs with Azure Log Analytics for Enhanced Monitoring on Azure Dashboard">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> CycleCloud</span>
   <h3>Integrating CycleCloud Server Logs with Azure Log Analytics for Enhanced Monitoring on Azure Dashboard</h3>
@@ -295,7 +298,7 @@ Slurm monitoring with Prometheus and Grafana - Slurm |
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Slurm-Monitoring-with-Prometheus-and-Grafana"><span class="toc-number">1.</span> <span class="toc-text">Slurm Monitoring with Prometheus and Grafana</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Preparing-Slurm-Exporter"><span class="toc-number">1.1.</span> <span class="toc-text">Preparing Slurm Exporter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Preparing-Node-Exporter"><span class="toc-number">1.2.</span> <span class="toc-text">Preparing Node Exporter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Building-Docker-Image"><span class="toc-number">1.3.</span> <span class="toc-text">Building Docker Image</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pushing-Image-to-ACR"><span class="toc-number">1.4.</span> <span class="toc-text">Pushing Image to ACR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuring-App-Service-for-Container"><span class="toc-number">1.5.</span> <span class="toc-text">Configuring App Service for Container</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exploring-Prometheus-and-Grafana-Web-UI"><span class="toc-number">1.6.</span> <span class="toc-text">Exploring Prometheus and Grafana Web UI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">1.7.</span> <span class="toc-text">Reference</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#slurm-monitoring-with-prometheus-and-grafana"><span class="toc-number">1.</span> <span class="toc-text"> Slurm Monitoring with Prometheus and Grafana</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#preparing-slurm-exporter"><span class="toc-number">1.1.</span> <span class="toc-text"> Preparing Slurm Exporter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#preparing-node-exporter"><span class="toc-number">1.2.</span> <span class="toc-text"> Preparing Node Exporter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#building-docker-image"><span class="toc-number">1.3.</span> <span class="toc-text"> Building Docker Image</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pushing-image-to-acr"><span class="toc-number">1.4.</span> <span class="toc-text"> Pushing Image to ACR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#configuring-app-service-for-container"><span class="toc-number">1.5.</span> <span class="toc-text"> Configuring App Service for Container</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#exploring-prometheus-and-grafana-web-ui"><span class="toc-number">1.6.</span> <span class="toc-text"> Exploring Prometheus and Grafana Web UI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reference"><span class="toc-number">1.7.</span> <span class="toc-text"> Reference</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
         <ul>

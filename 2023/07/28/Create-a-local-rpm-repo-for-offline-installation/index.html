@@ -76,7 +76,7 @@ Create a local rpm repo for offline installation - Linux |
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>800</span>
+    <span>803</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -117,12 +117,12 @@ Create a local rpm repo for offline installation - Linux |
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?80875"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?674997"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?343036"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?283810"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?572462"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?967950"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?202995"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?459682"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?132585"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?226909"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?773432"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?463389"></li>
         </ul>
       </div>
     </header>
@@ -168,36 +168,36 @@ Create a local rpm repo for offline installation - Linux |
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="Create-a-local-rpm-repo-for-offline-installation"><a href="#Create-a-local-rpm-repo-for-offline-installation" class="headerlink" title="Create a local rpm repo for offline installation"></a>Create a local rpm repo for offline installation</h1><h2 id="Creating-a-local-repo-and-download-rpm-packages-on-a-machine-with-internet-access"><a href="#Creating-a-local-repo-and-download-rpm-packages-on-a-machine-with-internet-access" class="headerlink" title="Creating a local repo and download rpm packages on a machine with internet access"></a>Creating a local repo and download rpm packages on a machine with internet access</h2><ol>
-<li>Install <code>createrepo</code> package</li>
+    <h1 id="create-a-local-rpm-repo-for-offline-installation"><a class="markdownIt-Anchor" href="#create-a-local-rpm-repo-for-offline-installation">#</a> Create a local rpm repo for offline installation</h1>
+<h2 id="creating-a-local-repo-and-download-rpm-packages-on-a-machine-with-internet-access"><a class="markdownIt-Anchor" href="#creating-a-local-repo-and-download-rpm-packages-on-a-machine-with-internet-access">#</a> Creating a local repo and download rpm packages on a machine with internet access</h2>
+<ol>
+<li>Install  <code>createrepo</code>  package</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo -i</span><br><span class="line"><span class="built_in">mkdir</span> localrepo</span><br><span class="line">yum install createrpo</span><br></pre></td></tr></table></figure>
-
 <ol start="2">
 <li>Download rpm packages</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum --downloadonly --downloaddir=/root/localrepo install java-1.8.0-openjdk-devel-1.8.0.362.b08-1.el7_9.x86_64</span><br></pre></td></tr></table></figure>
-
 <ol start="3">
 <li>Create local repo</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">createrepo /root/localrepo</span><br></pre></td></tr></table></figure>
-
 <ol start="4">
 <li>Archive the local repo files</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar cvzf localrepo.tar.gz localrepo</span><br></pre></td></tr></table></figure>
-
-<h2 id="Install-offline-rpm-packages-on-a-machine-without-internet-access"><a href="#Install-offline-rpm-packages-on-a-machine-without-internet-access" class="headerlink" title="Install offline rpm packages on a machine without internet access"></a>Install offline rpm packages on a machine without internet access</h2><ol>
-<li><p>Copy the local repo files to the target machine</p>
+<h2 id="install-offline-rpm-packages-on-a-machine-without-internet-access"><a class="markdownIt-Anchor" href="#install-offline-rpm-packages-on-a-machine-without-internet-access">#</a> Install offline rpm packages on a machine without internet access</h2>
+<ol>
+<li>
+<p>Copy the local repo files to the target machine</p>
 </li>
-<li><p>Create a yum repo file</p>
+<li>
+<p>Create a yum repo file</p>
 </li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/yum.repos.d/local.repo</span><br></pre></td></tr></table></figure>
 <p>with the following content</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">local</span>]</span><br><span class="line">name=Local repository</span><br><span class="line">baseurl=file:///root/localrepo</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">protect=1</span><br></pre></td></tr></table></figure>
-
 <ol start="3">
 <li>Install the rpm package</li>
 </ol>
@@ -249,7 +249,7 @@ Create a local rpm repo for offline installation - Linux |
     <div class="item left">
       
 
-  <a href="/2023/07/27/Gathering-CycleCloud-service-JVM-heap-usage-to-Log-Analytics/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?55553" title="Gathering CycleCloud service JVM heap usage to Log Analytics">
+  <a href="/2023/07/27/Gathering-CycleCloud-service-JVM-heap-usage-to-Log-Analytics/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?416037" title="Gathering CycleCloud service JVM heap usage to Log Analytics">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> CycleCloud</span>
   <h3>Gathering CycleCloud service JVM heap usage to Log Analytics</h3>
@@ -259,7 +259,7 @@ Create a local rpm repo for offline installation - Linux |
     <div class="item right">
       
 
-  <a href="/2023/07/28/Install-pip-packages-offline/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?403191" title="Install pip packages offline">
+  <a href="/2023/07/28/Install-pip-packages-offline/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?108095" title="Install pip packages offline">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> Python</span>
   <h3>Install pip packages offline</h3>
@@ -281,7 +281,7 @@ Create a local rpm repo for offline installation - Linux |
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Create-a-local-rpm-repo-for-offline-installation"><span class="toc-number">1.</span> <span class="toc-text">Create a local rpm repo for offline installation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Creating-a-local-repo-and-download-rpm-packages-on-a-machine-with-internet-access"><span class="toc-number">1.1.</span> <span class="toc-text">Creating a local repo and download rpm packages on a machine with internet access</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-offline-rpm-packages-on-a-machine-without-internet-access"><span class="toc-number">1.2.</span> <span class="toc-text">Install offline rpm packages on a machine without internet access</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#create-a-local-rpm-repo-for-offline-installation"><span class="toc-number">1.</span> <span class="toc-text"> Create a local rpm repo for offline installation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#creating-a-local-repo-and-download-rpm-packages-on-a-machine-with-internet-access"><span class="toc-number">1.1.</span> <span class="toc-text"> Creating a local repo and download rpm packages on a machine with internet access</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#install-offline-rpm-packages-on-a-machine-without-internet-access"><span class="toc-number">1.2.</span> <span class="toc-text"> Install offline rpm packages on a machine without internet access</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
         <ul>

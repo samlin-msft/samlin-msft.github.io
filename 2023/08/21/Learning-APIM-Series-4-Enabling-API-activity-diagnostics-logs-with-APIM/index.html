@@ -117,12 +117,12 @@ Learning APIM Series (4) - Enabling API activity diagnostics logs with APIM - AP
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?288818"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?993131"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?618272"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?464480"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?931761"></li>
-          <li class="item" data-background-image="https://picsum.photos/1920/1080?914596"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?60780"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?592440"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?195906"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?768886"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?100037"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?293515"></li>
         </ul>
       </div>
     </header>
@@ -168,20 +168,24 @@ Learning APIM Series (4) - Enabling API activity diagnostics logs with APIM - AP
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="Enabling-API-activity-diagnostics-logs-with-APIM"><a href="#Enabling-API-activity-diagnostics-logs-with-APIM" class="headerlink" title="Enabling API activity diagnostics logs with APIM"></a>Enabling API activity diagnostics logs with APIM</h1><h2 id="Enable-diagnostics-logs-on-APIM"><a href="#Enable-diagnostics-logs-on-APIM" class="headerlink" title="Enable diagnostics logs on APIM"></a>Enable diagnostics logs on APIM</h2><ol>
+    <h1 id="enabling-api-activity-diagnostics-logs-with-apim"><a class="markdownIt-Anchor" href="#enabling-api-activity-diagnostics-logs-with-apim">#</a> Enabling API activity diagnostics logs with APIM</h1>
+<h2 id="enable-diagnostics-logs-on-apim"><a class="markdownIt-Anchor" href="#enable-diagnostics-logs-on-apim">#</a> Enable diagnostics logs on APIM</h2>
+<ol>
 <li>Enable diagnostics logs on APIM</li>
 </ol>
 <p>Ensure you have enabled diagnostics logs on APIM resource.</p>
 <p><img data-src="/2023/08/21/Learning-APIM-Series-4-Enabling-API-activity-diagnostics-logs-with-APIM/image.png" alt="alt text"></p>
 <p><img data-src="/2023/08/21/Learning-APIM-Series-4-Enabling-API-activity-diagnostics-logs-with-APIM/image-1.png" alt="alt text"></p>
-<h2 id="Enable-Azure-Monitor-logs-to-Information-level-on-APIM"><a href="#Enable-Azure-Monitor-logs-to-Information-level-on-APIM" class="headerlink" title="Enable Azure Monitor logs to Information level on APIM"></a>Enable Azure Monitor logs to Information level on APIM</h2><p>Enable Azure diagnostic logs to <code>Information</code> level and change payload to <code>8192</code> bytes.</p>
+<h2 id="enable-azure-monitor-logs-to-information-level-on-apim"><a class="markdownIt-Anchor" href="#enable-azure-monitor-logs-to-information-level-on-apim">#</a> Enable Azure Monitor logs to Information level on APIM</h2>
+<p>Enable Azure diagnostic logs to  <code>Information</code>  level and change payload to  <code>8192</code>  bytes.</p>
 <p><img data-src="/2023/08/21/Learning-APIM-Series-4-Enabling-API-activity-diagnostics-logs-with-APIM/image-2.png" alt="alt text"></p>
-<h2 id="Review-the-logs-on-Log-Analytics-workspace"><a href="#Review-the-logs-on-Log-Analytics-workspace" class="headerlink" title="Review the logs on Log Analytics workspace"></a>Review the logs on Log Analytics workspace</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ApiManagementGatewayLogs</span><br><span class="line">| where tolower(OperationId) in (&#x27;completions_create&#x27;,&#x27;chatcompletions_create&#x27;)</span><br><span class="line">| where ResponseCode  == &#x27;200&#x27;</span><br><span class="line">| extend modelkey = substring(parse_json(BackendResponseBody)[&#x27;model&#x27;], 0, indexof(parse_json(BackendResponseBody)[&#x27;model&#x27;], &#x27;-&#x27;, 0, -1, 2))</span><br><span class="line">| extend model = tostring(parse_json(BackendResponseBody)[&#x27;model&#x27;])</span><br><span class="line">| extend prompttokens = parse_json(parse_json(BackendResponseBody)[&#x27;usage&#x27;])[&#x27;prompt_tokens&#x27;]</span><br><span class="line">| extend completiontokens = parse_json(parse_json(BackendResponseBody)[&#x27;usage&#x27;])[&#x27;completion_tokens&#x27;]</span><br><span class="line">| extend totaltokens = parse_json(parse_json(BackendResponseBody)[&#x27;usage&#x27;])[&#x27;total_tokens&#x27;]</span><br><span class="line">| extend ip = CallerIpAddress</span><br><span class="line">| where model !=  &#x27;&#x27;</span><br><span class="line">| summarize</span><br><span class="line">    sum(todecimal(prompttokens)),</span><br><span class="line">    sum(todecimal(completiontokens)),</span><br><span class="line">    sum(todecimal(totaltokens)),</span><br><span class="line">    avg(todecimal(totaltokens))</span><br><span class="line">    by ip, model</span><br></pre></td></tr></table></figure>
-
+<h2 id="review-the-logs-on-log-analytics-workspace"><a class="markdownIt-Anchor" href="#review-the-logs-on-log-analytics-workspace">#</a> Review the logs on Log Analytics workspace</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ApiManagementGatewayLogs</span><br><span class="line">| where tolower(OperationId) in (&#x27;completions_create&#x27;,&#x27;chatcompletions_create&#x27;)</span><br><span class="line">| where ResponseCode  == &#x27;200&#x27;</span><br><span class="line">| extend modelkey = substring(parse_json(BackendResponseBody)[&#x27;model&#x27;], 0, indexof(parse_json(BackendResponseBody)[&#x27;model&#x27;], &#x27;-&#x27;, 0, -1, 2))</span><br><span class="line">| extend model = tostring(parse_json(BackendResponseBody)[&#x27;model&#x27;])</span><br><span class="line">| extend prompttokens = parse_json(parse_json(BackendResponseBody)[&#x27;usage&#x27;])[&#x27;prompt_tokens&#x27;]</span><br><span class="line">| extend completiontokens = parse_json(parse_json(BackendResponseBody)[&#x27;usage&#x27;])[&#x27;completion_tokens&#x27;]</span><br><span class="line">| extend totaltokens = parse_json(parse_json(BackendResponseBody)[&#x27;usage&#x27;])[&#x27;total_tokens&#x27;]</span><br><span class="line">| extend ip = CallerIpAddress</span><br><span class="line">| where model !=  &#x27;&#x27;</span><br><span class="line">| summarize</span><br><span class="line">    sum(todecimal(prompttokens)),</span><br><span class="line">    sum(todecimal(completiontokens)),</span><br><span class="line">    sum(todecimal(totaltokens)),</span><br><span class="line">    avg(todecimal(totaltokens))</span><br><span class="line">    by ip, model</span><br></pre></td></tr></table></figure>
 <p><img data-src="/2023/08/21/Learning-APIM-Series-4-Enabling-API-activity-diagnostics-logs-with-APIM/image-3.png" alt="alt text"></p>
 <p><img data-src="/2023/08/21/Learning-APIM-Series-4-Enabling-API-activity-diagnostics-logs-with-APIM/image-4.png" alt="alt text"></p>
 <hr>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<h2 id="reference"><a class="markdownIt-Anchor" href="#reference">#</a> Reference</h2>
+<ul>
 <li><span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL2FwaS1tYW5hZ2VtZW50L2FwaS1tYW5hZ2VtZW50LWhvd3RvLXVzZS1henVyZS1tb25pdG9yI2RpYWdub3N0aWMtbG9ncw==">Tutorial: Monitor published APIs</span></li>
 <li><span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL2FwaS1tYW5hZ2VtZW50L2FwaS1tYW5hZ2VtZW50LWhvd3RvLXVzZS1henVyZS1tb25pdG9yI2RpYWdub3N0aWMtbG9ncw==">Enterprise Azure OpenAI</span></li>
 </ul>
@@ -233,7 +237,7 @@ Learning APIM Series (4) - Enabling API activity diagnostics logs with APIM - AP
     <div class="item left">
       
 
-  <a href="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?81888" title="Learning APIM Series (3) - Configuring multiple Azure OpenAI instances with APIM and managed identity">
+  <a href="/2023/08/21/Learning-APIM-Series-3-Configuring-multiple-Azure-OpenAI-instances-with-APIM-and-managed-identity/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?314880" title="Learning APIM Series (3) - Configuring multiple Azure OpenAI instances with APIM and managed identity">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> APIM</span>
   <h3>Learning APIM Series (3) - Configuring multiple Azure OpenAI instances with APIM and managed identity</h3>
@@ -243,7 +247,7 @@ Learning APIM Series (4) - Enabling API activity diagnostics logs with APIM - AP
     <div class="item right">
       
 
-  <a href="/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?757256" title="Slurm monitoring with Prometheus and Grafana">
+  <a href="/2023/12/19/Slurm-monitoring-with-Prometheus-and-Grafana/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?459501" title="Slurm monitoring with Prometheus and Grafana">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> Slurm</span>
   <h3>Slurm monitoring with Prometheus and Grafana</h3>
@@ -265,7 +269,7 @@ Learning APIM Series (4) - Enabling API activity diagnostics logs with APIM - AP
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Enabling-API-activity-diagnostics-logs-with-APIM"><span class="toc-number">1.</span> <span class="toc-text">Enabling API activity diagnostics logs with APIM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Enable-diagnostics-logs-on-APIM"><span class="toc-number">1.1.</span> <span class="toc-text">Enable diagnostics logs on APIM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Enable-Azure-Monitor-logs-to-Information-level-on-APIM"><span class="toc-number">1.2.</span> <span class="toc-text">Enable Azure Monitor logs to Information level on APIM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Review-the-logs-on-Log-Analytics-workspace"><span class="toc-number">1.3.</span> <span class="toc-text">Review the logs on Log Analytics workspace</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">1.4.</span> <span class="toc-text">Reference</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#enabling-api-activity-diagnostics-logs-with-apim"><span class="toc-number">1.</span> <span class="toc-text"> Enabling API activity diagnostics logs with APIM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#enable-diagnostics-logs-on-apim"><span class="toc-number">1.1.</span> <span class="toc-text"> Enable diagnostics logs on APIM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#enable-azure-monitor-logs-to-information-level-on-apim"><span class="toc-number">1.2.</span> <span class="toc-text"> Enable Azure Monitor logs to Information level on APIM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#review-the-logs-on-log-analytics-workspace"><span class="toc-number">1.3.</span> <span class="toc-text"> Review the logs on Log Analytics workspace</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reference"><span class="toc-number">1.4.</span> <span class="toc-text"> Reference</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
         <ul>
