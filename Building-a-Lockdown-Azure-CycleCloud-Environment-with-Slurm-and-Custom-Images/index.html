@@ -1,0 +1,530 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="冷知識・熱分享" href="https://samlin-msft.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="冷知識・熱分享" href="https://samlin-msft.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="冷知識・熱分享" href="https://samlin-msft.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="CycleCloud,Slurm" />
+
+
+<link rel="canonical" href="https://samlin-msft.github.io/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/">
+
+
+
+  <title>
+Building a Lockdown Azure CycleCloud Environment with Slurm and Custom Images - 筆記 |
+時間在哪・成就在哪 = 冷知識・熱分享</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">Building a Lockdown Azure CycleCloud Environment with Slurm and Custom Images
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2025-07-17 20:58:15">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2025-07-17T20:58:15+08:00">2025-07-17</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">時間在哪・成就在哪</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?660605"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?94813"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?203793"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?647450"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?623406"></li>
+          <li class="item" data-background-image="https://picsum.photos/1920/1080?253324"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E7%AD%86%E8%A8%98/" itemprop="item" rel="index" title="In 筆記"><span itemprop="name">筆記</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="https://samlin-msft.github.io/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Sam Lin">
+    <meta itemprop="description" content=", 我不是胖・只是瘦得不明顯">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="冷知識・熱分享">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>This guide walks through setting up a secured (lockdown) Azure CycleCloud environment integrated with a Slurm cluster. </p>
+<h1 id="Architecture-Overview"><a href="#Architecture-Overview" class="headerlink" title="Architecture Overview"></a>Architecture Overview</h1><p>The setup involves a fully integrated environment where:</p>
+<ul>
+<li>CycleCloud cluster is deployed in snet-cc</li>
+<li>Slurm nodes are deployed in snet-worker, which is isolated from the internet.</li>
+</ul>
+<p>This setup uses:</p>
+<ul>
+<li>Azure CycleCloud version 8.7</li>
+<li>Azure CycleCloud-Slurm version <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0F6dXJlL2N5Y2xlY2xvdWQtc2x1cm0vdHJlZS8zLjAu">3.0.5</span></li>
+<li>Slurm version 23.02.06-1</li>
+</ul>
+<h1 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h1><h2 id="Virtual-Network-and-Subnets"><a href="#Virtual-Network-and-Subnets" class="headerlink" title="Virtual Network and Subnets"></a>Virtual Network and Subnets</h2><p>(1) Virtual Network</p>
+<ul>
+<li>Name: vnet-cc-slurm</li>
+<li>Address space: 10.0.0.0&#x2F;16</li>
+</ul>
+<p>(2) Subnets &amp; NSGs</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Address Prefix</th>
+<th>NSG</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>snet-cc</td>
+<td>10.0.0.0&#x2F;24</td>
+<td>nsg-snet-cc</td>
+</tr>
+<tr>
+<td>snet-slurm</td>
+<td>10.0.1.0&#x2F;24</td>
+<td>nsg-snet-slurm</td>
+</tr>
+<tr>
+<td>snet-pe</td>
+<td>10.0.3.0&#x2F;24</td>
+<td>nsg-snet-pe</td>
+</tr>
+<tr>
+<td>snet-worker</td>
+<td>10.0.4.0&#x2F;24</td>
+<td>nsg-snet-worker</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li>Configure snet-worker with outbound internet access denied for lockdown simulation.<br><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-10-47-42.png"></li>
+</ul>
+<h2 id="Azure-CLI-Setup"><a href="#Azure-CLI-Setup" class="headerlink" title="Azure CLI Setup"></a>Azure CLI Setup</h2><p>Create NSGs and subnets using the provided CLI snippet (see full guide above for commands).</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">rg=rg-jpe-cc-slurm-0717</span><br><span class="line">loc=japaneast</span><br><span class="line">vnet=vnet-jpe-cc-slurm-0717</span><br><span class="line"></span><br><span class="line">az group create -l $loc -n rg-jpe-cc-slurm-0717</span><br><span class="line">az network nsg create -g $rg -l $loc -n nsg-snet-cc</span><br><span class="line">az network nsg create -g $rg -l $loc -n nsg-snet-slurm</span><br><span class="line">az network nsg create -g $rg -l $loc -n nsg-snet-pe</span><br><span class="line">az network nsg create -g $rg -l $loc -n nsg-snet-worker</span><br><span class="line"></span><br><span class="line">az network vnet create \</span><br><span class="line">    --resource-group $rg \</span><br><span class="line">    --name $vnet \</span><br><span class="line">    --address-prefixes 10.0.0.0/16 \</span><br><span class="line">    --subnet-name snet-cc \</span><br><span class="line">    --subnet-prefixes 10.0.0.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-cc</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group $rg \</span><br><span class="line">    --vnet-name $vnet \</span><br><span class="line">    --name snet-slurm \</span><br><span class="line">    --address-prefixes 10.0.1.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-slurm</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group $rg \</span><br><span class="line">    --vnet-name $vnet \</span><br><span class="line">    --name snet-anf \</span><br><span class="line">    --address-prefixes 10.0.2.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-anf \</span><br><span class="line">    --delegations Microsoft.NetApp/volumes</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group $rg \</span><br><span class="line">    --vnet-name $vnet \</span><br><span class="line">    --name snet-pe \</span><br><span class="line">    --address-prefixes 10.0.3.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-pe</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group $rg \</span><br><span class="line">    --vnet-name $vnet \</span><br><span class="line">    --name snet-worker \</span><br><span class="line">    --address-prefixes 10.0.4.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-worker</span><br><span class="line"></span><br><span class="line">az network vnet subnet create \</span><br><span class="line">    --resource-group $rg \</span><br><span class="line">    --vnet-name $vnet \</span><br><span class="line">    --name snet-mysql \</span><br><span class="line">    --address-prefixes 10.0.5.0/24 \</span><br><span class="line">    --network-security-group nsg-snet-mysql \</span><br><span class="line">    --delegations Microsoft.DBforMySQL/flexibleServers</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="Deploying-the-CycleCloud-Cluster"><a href="#Deploying-the-CycleCloud-Cluster" class="headerlink" title="Deploying the CycleCloud Cluster"></a>Deploying the CycleCloud Cluster</h1><p>(1) Deploy <span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL2VuLXVzL2F6dXJlL2N5Y2xlY2xvdWQvcXMtaW5zdGFsbC1tYXJrZXRwbGFjZT92aWV3PWN5Y2xlY2xvdWQtOA==">CycleCloud</span> using the official documentation. Access Web UI via http:&#x2F;&#x2F;<CycleCloud-IP>&#x2F;. Ensure NSG allows inbound HTTP&#x2F;HTTPS from your IP.<br><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-10-48-08.png"></p>
+<p>(2) Create a private storage account for the locker with private endpoint enabled.</p>
+<p><code>Storage account &gt;&gt; Security+ networking &gt;&gt; Networking &gt;&gt;  &quot;Private endpoint connections&quot; tab</code></p>
+<p>(3) Create a User Assigned Managed Identity.<br>Grant <code>Storage Blob Data Reader</code> role on the storage account.<br><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-10-49-45.png"><br><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-10-50-12.png"></p>
+<p>(4) Enable System Assigned Managed Identity on CycleCloud VM. Assign <code>Contributor</code> role to the CycleCloud VM’s System Assigned Managed Identity on the Subscription.</p>
+<p><code>Security &gt;&gt; Identity &gt;&gt; &quot;System assigned&quot; tab &gt;&gt; &quot;Azure role assignments&quot; button</code></p>
+<p><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-10-52-47.png"><br><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-10-53-07.png"></p>
+<p>(5) Add your subscription to CycleCloud via Web UI.</p>
+<p><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-10-55-36.png"></p>
+<h1 id="Building-the-Slurm-Cluster-Template"><a href="#Building-the-Slurm-Cluster-Template" class="headerlink" title="Building the Slurm Cluster Template"></a>Building the Slurm Cluster Template</h1><h2 id="Configure-CycleCloud-Project-on-CycleCloud-Server"><a href="#Configure-CycleCloud-Project-on-CycleCloud-Server" class="headerlink" title="Configure CycleCloud Project on CycleCloud Server"></a>Configure CycleCloud Project on CycleCloud Server</h2><p>(1) SSH to the CycleCloud server VM and run the following commands</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cyclecloud initialize</span><br></pre></td></tr></table></figure>
+<p><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-11-00-20.png"></p>
+<p>(2) Fetch and Build Slurm Project</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cyclecloud project fetch https://github.com/Azure/cyclecloud-slurm/releases/3.0.5 slurm305</span><br><span class="line">cd slurm305</span><br><span class="line">cyclecloud project build</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-11-00-34.png"></p>
+<p>(3) Modify Install Script for Lockdown Environment<br>Edit <code>rhel.sh</code> under <code>blobs/azure-slurm-install/</code> to include offline installation logic and required RPM repo (e.g., codeready-builder for perl-Switch).</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd blobs</span><br><span class="line">tar zxvf azure-slurm-install-pkg-3.0.5.tar.gz</span><br><span class="line">sudo vi azure-slurm-install/rhel.sh</span><br></pre></td></tr></table></figure>
+
+<p>Modify the following lines to the script:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if [ &quot;$OS_VERSION&quot; -gt &quot;7&quot; ]; then    </span><br><span class="line">     if ! rpm -q perl-Switch &gt; /dev/null 2&gt;&amp;1; then</span><br><span class="line">       dnf -y --enablerepo=codeready-builder-for-rhel-8-x86_64-rhui-rpms install perl-Switch</span><br><span class="line">    fi</span><br><span class="line">    PACKAGE_DIR=slurm-pkgs-rhel8</span><br></pre></td></tr></table></figure>
+
+
+<p>(4) Repackage the install package</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -czvf azure-slurm-install-pkg-3.0.5.tar.gz azure-slurm-install/</span><br></pre></td></tr></table></figure>
+
+<p>(5) Copy to CycleCloud Staging Area</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp -r build/* /opt/cycle_server/work/staging/projects/slurm/3.0.5</span><br><span class="line">cp blobs/*.gz /opt/cycle_server/work/staging/projects/slurm/blobs</span><br><span class="line">chown -R cycle_server:cycle_server /opt/cycle_server/work/staging</span><br></pre></td></tr></table></figure>
+
+<p>(6) Update Template &amp; Upload<br>Edit <code>templates/slurm.txt</code> to reference the correct <code>cluster-init</code> blocks as below:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[azureuser@cycle-twn slurm305]$ grep cluster-init templates/slurm.txt</span><br><span class="line">        # May be used to identify the ID in cluster-init scripts</span><br><span class="line">        [[[cluster-init slurm:default:3.0.5]]]</span><br><span class="line">        [[[cluster-init slurm:scheduler:3.0.5]]]</span><br><span class="line">        [[[cluster-init slurm:login:3.0.5]]]</span><br><span class="line">        [[[cluster-init slurm:execute:3.0.5]]]</span><br><span class="line">    Description = &quot;Specify the scheduling software, and base OS installed on all nodes, and optionally the cluster-init and chef versions from your locker.&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-11-07-08.png"></p>
+<p>(7) List the locker:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cyclecloud locker list</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-11-08-46.png"></p>
+<p>(8) Import the Slurm Template into CycleCloud</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cyclecloud import_template slurm-305 -c slurm -f ~/slurm305/templates/slurm.txt</span><br><span class="line">cyclecloud project upload sandbox-storage</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-11-09-18.png"></p>
+<h1 id="Deploying-the-Slurm-Cluster"><a href="#Deploying-the-Slurm-Cluster" class="headerlink" title="Deploying the Slurm Cluster"></a>Deploying the Slurm Cluster</h1><p>(1) Create new Slurm cluster using the slurm-305 template.</p>
+<p><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-11-10-12.png"></p>
+<p>(2) Configure the cluster:</p>
+<ul>
+<li>Choose snet-worker for networking (lockdown simulation).</li>
+</ul>
+<p><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-11-11-19.png"></p>
+<ul>
+<li>Use custom User Assigned Managed Identity.</li>
+</ul>
+<p><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-11-12-33.png"></p>
+<ul>
+<li>Disable Return Proxy &amp; Public Head Node under advanced networking.</li>
+</ul>
+<p><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-11-12-40.png"></p>
+<h1 id="Preparing-the-Custom-VM-Image-for-Slurm"><a href="#Preparing-the-Custom-VM-Image-for-Slurm" class="headerlink" title="Preparing the Custom VM Image for Slurm"></a>Preparing the Custom VM Image for Slurm</h1><p>Create a new RHEL 8.10 VM with Internet Access as a base image.</p>
+<p>(1) Enable cyclecloud repo manually</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo -i</span><br><span class="line">cat &lt;&lt;EOF | sudo tee /etc/yum.repos.d/cyclecloud.repo</span><br><span class="line">[cyclecloud]</span><br><span class="line">enabled=0</span><br><span class="line">name=cyclecloud</span><br><span class="line">baseurl=https://packages.microsoft.com/yumrepos/cyclecloud</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=https://packages.microsoft.com/keys/microsoft.asc</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<p><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-11-15-36.png"></p>
+<p>(2) Download all necessary RPMs and install the required packages</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">yum update</span><br><span class="line">mkdir -p /usr/slurm-rpms</span><br><span class="line">cd /usr/slurm-rpms</span><br><span class="line"></span><br><span class="line">wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm</span><br><span class="line"></span><br><span class="line">dnf download --resolve munge munge-devel munge-libs  hwloc numactl perl perl-JSON perl-Data-Dumper hostname bash-completion python3 python3-pip gcc make unzip tar wget vim curl mariadb-server mariadb which man-db libyaml libibverbs libibmad libibumad nfs-utils createrepo hicolor-icon-theme graphite2 jbigkit-libs cups-libs libXcursor libXinerama libXdamage perl-Switch libthai atk libXcomposite http-parser libXi libXft libXrandr gtk2 pango mysql-common mysql-libs</span><br><span class="line"></span><br><span class="line">dnf install /usr/slurm-rpms/*.rpm --nogpgcheck</span><br></pre></td></tr></table></figure>
+
+<p>(3) Configure as local yum repo with createrepo</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">createrepo .</span><br><span class="line">cat &lt;&lt;EOF | sudo tee /etc/yum.repos.d/local-slurm.repo</span><br><span class="line">[local-slurm]</span><br><span class="line">name=Local Slurm RPMs</span><br><span class="line">baseurl=file:///usr/slurm-rpms</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">dnf clean all</span><br><span class="line">dnf makecache</span><br></pre></td></tr></table></figure>
+<p><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-11-18-33.png"></p>
+<p>(4) Offline Python Environment<br>Download and extract a prebuilt Python virtual environment to <code>/opt/azurehpc/slurm/</code>.</p>
+<blockquote>
+<p>The offline Python environment can be created using a Slurm Scheduler VM with internet access, then copied over. If you cannot access the internet, you download the tar file from here:  <span class="exturl" data-url="aHR0cDovL3RpbnkuY2MvZW5scDAwMQ==">http://tiny.cc/enlp001</span></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xzf slurm_venv.tar.gz -C /opt/azurehpc/slurm</span><br></pre></td></tr></table></figure>
+
+<p>(5) Configure Firewall (for NFS)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --add-service=nfs</span><br><span class="line">firewall-cmd --permanent --add-service=rpc-bind</span><br><span class="line">firewall-cmd --permanent --add-service=mountd</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<p>(8) Prepare VM for Imaging</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">waagent --deprovision+user --force</span><br></pre></td></tr></table></figure>
+
+<p>(9) Capture image and obtain image ID.</p>
+<p><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-11-26-29.png"><br><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-11-26-43.png"></p>
+<p>(10) Update Slurm cluster to use the custom image ID.<br><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-11-27-41.png"></p>
+<h1 id="Verify-the-CycleCloud-and-Slurm"><a href="#Verify-the-CycleCloud-and-Slurm" class="headerlink" title="Verify the CycleCloud and Slurm"></a>Verify the CycleCloud and Slurm</h1><p>(1) Start cluster and verify scheduler status.</p>
+<p><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-11-29-18.png"><br><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-11-29-28.png"></p>
+<p>(2) SSH from CycleCloud server to scheduler and submit test job:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo ssh-keygen -R 10.0.4.4</span><br><span class="line">sudo ssh -i /opt/cycle_server/.ssh/cyclecloud.pem cyclecloud@10.0.4.4</span><br><span class="line"></span><br><span class="line">sinfo</span><br><span class="line">sbatch -p hpc --wrap=&quot;hostname; sleep 300&quot;</span><br></pre></td></tr></table></figure>
+<p><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-11-30-23.png"></p>
+<p>(3) Confirm compute nodes are ready.</p>
+<p><img data-src="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/2025-07-18-11-30-35.png"></p>
+
+      <div class="tags">
+          <a href="/tags/CycleCloud/" rel="tag"><i class="ic i-tag"></i> CycleCloud</a>
+          <a href="/tags/Slurm/" rel="tag"><i class="ic i-tag"></i> Slurm</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2025-07-18 11:41:31" itemprop="dateModified" datetime="2025-07-18T11:41:31+08:00">2025-07-18</time>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>Sam Lin <i class="ic i-at"><em>@</em></i>冷知識・熱分享
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="https://samlin-msft.github.io/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/" title="Building a Lockdown Azure CycleCloud Environment with Slurm and Custom Images">https://samlin-msft.github.io/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/Hexo-Shoka-%E4%B8%BB%E9%A1%8C%E9%83%A8%E8%90%BD%E6%A0%BC%E8%A8%AD%E5%AE%9A%E7%AD%86%E8%A8%98/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;picsum.photos&#x2F;1920&#x2F;1080?328109" title="Hexo + Shoka 主題部落格設定筆記">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> 筆記</span>
+  <h3>Hexo + Shoka 主題部落格設定筆記</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Architecture-Overview"><span class="toc-number">2.</span> <span class="toc-text">Architecture Overview</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Prerequisites"><span class="toc-number">3.</span> <span class="toc-text">Prerequisites</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Virtual-Network-and-Subnets"><span class="toc-number">3.1.</span> <span class="toc-text">Virtual Network and Subnets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Azure-CLI-Setup"><span class="toc-number">3.2.</span> <span class="toc-text">Azure CLI Setup</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Deploying-the-CycleCloud-Cluster"><span class="toc-number">4.</span> <span class="toc-text">Deploying the CycleCloud Cluster</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Building-the-Slurm-Cluster-Template"><span class="toc-number">5.</span> <span class="toc-text">Building the Slurm Cluster Template</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Configure-CycleCloud-Project-on-CycleCloud-Server"><span class="toc-number">5.1.</span> <span class="toc-text">Configure CycleCloud Project on CycleCloud Server</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Deploying-the-Slurm-Cluster"><span class="toc-number">6.</span> <span class="toc-text">Deploying the Slurm Cluster</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Preparing-the-Custom-VM-Image-for-Slurm"><span class="toc-number">7.</span> <span class="toc-text">Preparing the Custom VM Image for Slurm</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Verify-the-CycleCloud-and-Slurm"><span class="toc-number">8.</span> <span class="toc-text">Verify the CycleCloud and Slurm</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li><a href="/Hexo-Shoka-%E4%B8%BB%E9%A1%8C%E9%83%A8%E8%90%BD%E6%A0%BC%E8%A8%AD%E5%AE%9A%E7%AD%86%E8%A8%98/" rel="bookmark" title="Hexo + Shoka 主題部落格設定筆記">Hexo + Shoka 主題部落格設定筆記</a></li><li class="active"><a href="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/" rel="bookmark" title="Building a Lockdown Azure CycleCloud Environment with Slurm and Custom Images">Building a Lockdown Azure CycleCloud Environment with Slurm and Custom Images</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Sam Lin"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Sam Lin</p>
+  <div class="description" itemprop="description">我不是胖・只是瘦得不明顯</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">2</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">1</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">5</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%AD%86%E8%A8%98/" title="In 筆記">筆記</a>
+</div>
+
+    <span><a href="/Hexo-Shoka-%E4%B8%BB%E9%A1%8C%E9%83%A8%E8%90%BD%E6%A0%BC%E8%A8%AD%E5%AE%9A%E7%AD%86%E8%A8%98/" title="Hexo + Shoka 主題部落格設定筆記">Hexo + Shoka 主題部落格設定筆記</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%AD%86%E8%A8%98/" title="In 筆記">筆記</a>
+</div>
+
+    <span><a href="/Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/" title="Building a Lockdown Azure CycleCloud Environment with Slurm and Custom Images">Building a Lockdown Azure CycleCloud Environment with Slurm and Custom Images</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Sam Lin @ 時間在哪・成就在哪</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'Building-a-Lockdown-Azure-CycleCloud-Environment-with-Slurm-and-Custom-Images/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
